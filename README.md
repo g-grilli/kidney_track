@@ -10,12 +10,9 @@ This book needs to be hauled around to various checkups and tests, but the infor
 quickly changes as medications are added, dosages changed or just stopped altogether, 
 clinic appointments and tests are added,  for for the pack rat at heart this creates 
 a daunting challenge and administrative PIB.</p>
-<br>
-
 <h3>Solution</h3> 
 <p><strong>Kidney Track</strong> is a progressive web app to help ease the admin 
 burden for the transplant family.<p>
-
 <h3>Tools</h3>
 <ul>
 <li>React</li>
