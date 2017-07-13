@@ -6,8 +6,4 @@ var store = createStore(contacts);
 
 
 
-
-
-
-
 export default store;

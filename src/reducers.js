@@ -16,10 +16,10 @@ var initialState = {
 };
 
 function compare(a,b) {
-  if (a.name < b.name) {
+  if (a.lastName < b.lastName) {
     return -1;
   }
-  if (a.name > b.name) {
+  if (a.lastName > b.lastName) {
     return 1;
   } 
   return 0;
@@ -73,7 +73,7 @@ export function contacts (state, action) {
       new_state = {};
       
       state.contacts.forEach(function (c, index) {
-        if (c.name.toLowerCase().search(action.term.toLowerCase()) > -1) {
+        if (c.lastName.toLowerCase().search(action.term.toLowerCase()) > -1) {
           filter_contacts.push(
             Object.assign({}, c, {orig: index, expanded: false})
           );

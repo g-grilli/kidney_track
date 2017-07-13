@@ -18,7 +18,7 @@ class ContactCard extends Component {
   };
   
   handleSubmit(event) {
-    console.log('submitted: ' + this.state.name +' '+ this.state.email);
+    console.log('submitted: ' + this.state.lastName +' '+ this.state.email);
     event.preventDefault();
   }
   

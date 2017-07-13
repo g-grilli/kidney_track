@@ -48,4 +48,38 @@ export function doSearch (term) {
     term: term
   }
 }
+export function addMed (data) {
+  return {
+    type: 'ADD_MEDS',
+    data: data
+  }
+}
+
+export function editMed (index, data) {
+  return {
+    type: 'EDIT_MEDS',
+    index: index,
+    data: data
+  }
+}
+
+export function deleteMed (findex, oindex) {
+  return {
+    type: 'DELETE_MEDS',
+    findex: findex,
+    oindex: oindex
+  }
+}
+
+export function initMed (data) {
+  return {
+    type: 'INIT_MEDS',
+    data: data
+  }
+}
+
+
+
+
+
 

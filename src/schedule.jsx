@@ -39,7 +39,10 @@ class Schedule extends Component {
         value={this.state.date}
         onChange={event => this.handleChangeDate(event, 'date')}
       />
-      <TextField floatingLabelText="Name"
+      <TextField floatingLabelText="First Name"
+           value={this.state.name}
+           onChange={event => this.update_state(event, 'name')}/>
+      <TextField floatingLabelText="Last Name"
            value={this.state.name}
            onChange={event => this.update_state(event, 'name')}/>
       </form>

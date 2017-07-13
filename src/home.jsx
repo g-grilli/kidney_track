@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Card, CardHeader, CardTitle, CardActions, CardText} from 'material-ui/Card';
+import {Card, CardTitle, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import movie from './logo.svg';
+//import movie from './logo.svg';
 import './App.css'
 
 class Main extends Component {

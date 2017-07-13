@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
-import {Card, CardHeader, CardTitle, CardActions, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
+import Schedule from './schedule'
+import Contacts from './contact-card'
+import Add from './add'
+import Medication from './medication'
+
+import { addContact } from './actions.js';
+import { connect } from 'react-redux';
 
 
 class Main extends Component {
+  state = {
+    open: false
+    };
+    
   handleExpandChange = (expanded) => {
   this.setState({expanded: expanded});
 };
@@ -13,11 +24,12 @@ class Main extends Component {
         <div>
           <Card className="md-card">
             <CardHeader
-             title='Medications & Dosage'
+             title='Prescriptions'
              subtitle='Schedule'
              actAsExpander={true}
              showExpandableButton={true}/>
              <CardText expandable={true}>
+              <Medication/>
               <table>
                 <tr>
                  <th>Medication</th>
@@ -101,6 +113,17 @@ class Main extends Component {
                  <th>8/15/2017</th>
                 </tr>
               </table>
+              <Schedule/>
+             </CardText>
+          </Card>
+          <Card className="md-card">
+           <CardHeader
+             title='Healthcare Team'
+             subtitle='Important Contacts & Information'
+             actAsExpander={true}
+             showExpandableButton={true}/>
+             <CardText expandable={true}>
+              <Add/>
              </CardText>
           </Card>
           <Card className="md-card">
@@ -121,4 +144,17 @@ class Main extends Component {
     );
   }
 }
+function mapStateToProps (state) {
+  return {contacts: state}
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    onSubmit: function (data) {
+      dispatch(addContact(data))
+    }
+  }
+}
+
+Main = connect(mapStateToProps, mapDispatchToProps)(Main)
 export default Main

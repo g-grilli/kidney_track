@@ -26,13 +26,13 @@ export function auth () {
         read_data();
         
         setTimeout(function () {
-         database.ref('contacts/' + User.user.uid)
+         database.ref('meds/' + User.user.uid)
           .once('value').then(function(contacts) {
            console.log(contacts.val());
            }); 
         }, 2000);
 
-        database.ref('contacts/' + User.user.uid)
+        database.ref('meds/' + User.user.uid)
          .on('value', function(contacts) {
           console.log(contacts.val());
          });
