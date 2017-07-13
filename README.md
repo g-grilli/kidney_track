@@ -1,7 +1,7 @@
 <h1>Kidney Track</h1>
 <h3>Problem</h3>
 <p>The first year after a kidney transplant requires a lot of monitoring, 
-changes  and tracking.  Currently the transplant recipient leaves the hospital 
+changes  and tracking.</p><p>Currently the transplant recipient leaves the hospital 
 with a 3 inch ring binder which contains information on items such as medications, dosages, 
 when to take them, and a schedule of doctor visits. A separate  section to track 
 your daily weight weight and blood pressure reading.  A section on what to do if. 
