@@ -11,6 +11,7 @@ import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/menu';
 import FlatButton from 'material-ui/FlatButton';
 
+import Schedule from './schedule';
 import Home from './home';
 import Main from './main';
 import './App.css'
@@ -60,6 +61,7 @@ class App extends Component {
           <Switch>
            <Route exact path="/" component={Home}/>
            <Route path="/main" component={Main}/>
+           <Route path="/schedule" component={Schedule}/>
            <Route component={NoMatch}/>
           </Switch>
          </div>
