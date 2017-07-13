@@ -1,18 +1,20 @@
 import * as firebase from "firebase";
 
-var config = {
-    apiKey: "AIzaSyBXf_LEtBCg-xcuXVNPmZdrL8USy1JvH1I",
-    authDomain: "ktrack-5e453.firebaseapp.com",
-    databaseURL: "https://ktrack-5e453.firebaseio.com",
-    projectId: "ktrack-5e453",
-    storageBucket: "ktrack-5e453.appspot.com",
-    messagingSenderId: "140888708838"
-  };
-firebase.initializeApp(config);
-  
+import { initContacts } from './actions';
+import store from './store';
 
+var config = {
+  apiKey: "AIzaSyCxK0g1oqbRmlXa8pQXSkyMj9K8hbG_LBU",
+    authDomain: "my-contacts-98b10.firebaseapp.com",
+    databaseURL: "https://my-contacts-98b10.firebaseio.com",
+    projectId: "my-contacts-98b10",
+    storageBucket: "my-contacts-98b10.appspot.com",
+    messagingSenderId: "673782336769"
+};
+firebase.initializeApp(config);
 
 var database = firebase.database();
+
 export var User = {};
 export function auth () {
   return new Promise(function (resolve, reject) {

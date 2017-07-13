@@ -11,13 +11,16 @@ import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/menu';
 import FlatButton from 'material-ui/FlatButton';
 
+import Contacts from './contacts';
+import ContactCard from './contact-card';
+import Add from './add';
 import Schedule from './schedule';
 import Home from './home';
 import Main from './main';
 import './App.css'
 
-//import { Provider } from 'react-redux';
-//import store from './store.js';
+import { Provider } from 'react-redux';
+import store from './store.js';
 
 const NoMatch = ({ location }) => (
   <div>
@@ -49,7 +52,7 @@ class App extends Component {
 
  render() {
   return (
-//    <Provider store={store}>
+    <Provider store={store}>
      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <div className="App">
         <div className="App-header">
@@ -62,13 +65,16 @@ class App extends Component {
            <Route exact path="/" component={Home}/>
            <Route path="/main" component={Main}/>
            <Route path="/schedule" component={Schedule}/>
+           <Route path="/add" component={Add}/>
+           <Route path="/contacts" component={Contacts}/>
+           <Route path="/contact-card" component={ContactCard}/>
            <Route component={NoMatch}/>
           </Switch>
          </div>
         </BrowserRouter>
         </div>
         </MuiThemeProvider>
-//    </Provider>
+    </Provider>
   );
  }
 }
