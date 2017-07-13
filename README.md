@@ -1,7 +1,5 @@
 <h1>Kidney Track</h1>
-<br><br><br>
 <h3>Problem</h3>
-<br>
 <p>The first year after a kidney transplant requires a lot of monitoring, 
 changes  and tracking.  Currently the transplant recipient leaves the hospital 
 with a 3 inch ring binder which contains information on items such as medications, dosages, 
@@ -12,10 +10,9 @@ This book needs to be hauled around to various checkups and tests, but the infor
 quickly changes as medications are added, dosages changed or just stopped altogether, 
 clinic appointments and tests are added,  for for the pack rat at heart this creates 
 a daunting challenge and administrative PIB.</p>
-<br><br><br>
+<br>
 
 <h3>Solution</h3> 
-<br>
 <p><strong>Kidney Track</strong> is a progressive web app to help ease the admin 
 burden for the transplant family.<p>
 
