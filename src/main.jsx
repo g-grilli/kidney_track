@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import Schedule from './schedule'
-import Contacts from './contact-card'
+import Contacts from './contacts'
 import Add from './add'
 import Medication from './medication'
-
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import {List, ListItem} from 'material-ui/List';
+import Checkbox from 'material-ui/Checkbox';
 import { addContact } from './actions.js';
 import { connect } from 'react-redux';
-
+import './main.css'
 
 class Main extends Component {
   state = {
@@ -20,99 +22,114 @@ class Main extends Component {
   
   render() {
     return (
-      <div>
+      <div className="Main">
         <div>
           <Card className="md-card">
             <CardHeader
              title='Prescriptions'
-             subtitle='Schedule'
+             subtitle='Dosage & Schedule'
              actAsExpander={true}
              showExpandableButton={true}/>
              <CardText expandable={true}>
+              <Table allRowsSelected={false}>
+               <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                <TableRow striped={true}>
+                 <TableHeaderColumn>Medication</TableHeaderColumn>
+                 <TableHeaderColumn>Dosage</TableHeaderColumn>
+                 <TableHeaderColumn>Morning</TableHeaderColumn>
+                 <TableHeaderColumn>Afternoon</TableHeaderColumn>
+                 <TableHeaderColumn>Evening</TableHeaderColumn>
+                 <TableHeaderColumn>Bed Time</TableHeaderColumn>
+                </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                <TableRow>
+                 <TableHeaderColumn>Asprin</TableHeaderColumn>
+                 <TableHeaderColumn>500mg</TableHeaderColumn>
+                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
+                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
+                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
+                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
+                </TableRow>
+                <TableRow>
+                 <TableHeaderColumn>Placebo</TableHeaderColumn>
+                 <TableHeaderColumn>1mg</TableHeaderColumn>
+                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
+                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
+                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
+                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
+                </TableRow>
+                </TableBody>
+              </Table>
               <Medication/>
-              <table>
-                <tr>
-                 <th>Medication</th>
-                 <th>Dosage</th>
-                 <th>Morning</th>
-                 <th>Afternoon</th>
-                 <th>Evening</th>
-                 <th>Bed Time</th>
-                </tr>
-                <tr>
-                 <th>Asprin</th>
-                 <th>500mg</th>
-                 <th>true</th>
-                 <th>false</th>
-                 <th>false</th>
-                 <th>false</th>
-                </tr>
-                <tr>
-                 <th>Placebo</th>
-                 <th>1mg</th>
-                 <th>false</th>
-                 <th>false</th>
-                 <th>false</th>
-                 <th>true</th>
-                </tr>
-              </table>
              </CardText>
           </Card>
           <Card className="md-card">
            <CardHeader
              title='Weight & Blood Pressure'
-             subtitle='Entry & History'
+             subtitle='Daily Check'
              actAsExpander={true}
              showExpandableButton={true}/>
              <CardText expandable={true}>
-              <table>
-                <tr>
-                 <th>Weight lbs.</th>
-                 <th>Systolic</th>
-                 <th>Diastolic</th>
-                </tr>
-                <tr>
-                 <th>115</th>
-                 <th>80</th>
-                 <th>70</th>
-                </tr>
-                <tr>
-                 <th>117</th>
-                 <th>90</th>
-                 <th>83</th>
-                </tr>
-              </table>
+              <Table>
+                <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                <TableRow striped={true}>
+                 <TableHeaderColumn>Date</TableHeaderColumn>
+                 <TableHeaderColumn>Weight lbs.</TableHeaderColumn>
+                 <TableHeaderColumn>Systolic</TableHeaderColumn>
+                 <TableHeaderColumn>Diastolic</TableHeaderColumn>
+                </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                <TableRow>
+                 <TableHeaderColumn>7/14/2017</TableHeaderColumn>
+                 <TableHeaderColumn>115</TableHeaderColumn>
+                 <TableHeaderColumn>80</TableHeaderColumn>
+                 <TableHeaderColumn>70</TableHeaderColumn>
+                </TableRow>
+                <TableRow>
+                 <TableHeaderColumn>7/15/2017</TableHeaderColumn>
+                 <TableHeaderColumn>117</TableHeaderColumn>
+                 <TableHeaderColumn>90</TableHeaderColumn>
+                 <TableHeaderColumn>83</TableHeaderColumn>
+                </TableRow>
+                </TableBody>
+              </Table>
              </CardText>
           </Card>
           <Card className="md-card">
            <CardHeader
              title='Doctor & Clinic Visits'
-             subtitle='Entry & History'
+             subtitle='Scheduled Appointments'
              actAsExpander={true}
              showExpandableButton={true}/>
              <CardText expandable={true}>
-              <table>
-                <tr>
-                 <th>Doctor</th>
-                 <th>Specialty</th>
-                 <th>Date</th>
-                </tr>
-                <tr>
-                 <th>Bob Smith</th>
-                 <th>Vampire</th>
-                 <th>7/28/2017</th>
-                </tr>
-                <tr>
-                 <th>Sue Wanker</th>
-                 <th>Ghost</th>
-                 <th>7/30/2017</th>
-                </tr>
-                <tr>
-                 <th>Abdul Jsecklas</th>
-                 <th>Werewolf</th>
-                 <th>8/15/2017</th>
-                </tr>
-              </table>
+              <Table>
+               <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+                <TableRow striped={true}>
+                 <TableHeaderColumn>Doctor</TableHeaderColumn>
+                 <TableHeaderColumn>Specialty</TableHeaderColumn>
+                 <TableHeaderColumn>Date</TableHeaderColumn>
+                </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                <TableRow striped={true}>
+                 <TableHeaderColumn>Bob Smith</TableHeaderColumn>
+                 <TableHeaderColumn>Vampire</TableHeaderColumn>
+                 <TableHeaderColumn>7/28/2017</TableHeaderColumn>
+                </TableRow>
+                <TableRow>
+                 <TableHeaderColumn>Sue Wanker</TableHeaderColumn>
+                 <TableHeaderColumn>Ghost</TableHeaderColumn>
+                 <TableHeaderColumn>7/30/2017</TableHeaderColumn>
+                </TableRow>
+                <TableRow>
+                 <TableHeaderColumn>Abdul Jsecklas</TableHeaderColumn>
+                 <TableHeaderColumn>Werewolf</TableHeaderColumn>
+                 <TableHeaderColumn>8/15/2017</TableHeaderColumn>
+                </TableRow>
+                </TableBody>
+              </Table>
               <Schedule/>
              </CardText>
           </Card>
@@ -123,19 +140,21 @@ class Main extends Component {
              actAsExpander={true}
              showExpandableButton={true}/>
              <CardText expandable={true}>
+              <Contacts/>
               <Add/>
              </CardText>
           </Card>
           <Card className="md-card">
            <CardHeader
              title='Doctor Questions'
-             subtitle='Entry & History'
+             subtitle='Question & Note & To Do'
              actAsExpander={true}
              showExpandableButton={true}/>
              <CardText expandable={true}>
-              <ul>
-              <li>Where's Waldo</li>
-              </ul>
+              <List>
+              <ListItem leftCheckbox={<Checkbox/>} primaryText='Hello there'/>
+              <ListItem leftCheckbox={<Checkbox/>} primaryText='Can I have pie?'/>
+              </List>
              </CardText>
           </Card>
           

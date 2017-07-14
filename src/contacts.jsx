@@ -20,7 +20,7 @@ class Contacts extends Component {
     return (
       <div>
        <Card className="md-card">
-        <CardTitle title="Search Contacts"/>
+        <CardTitle title="Search Health Team Member"/>
          <CardText expandable={false}>
           <TextField floatingLabelText="Search"
           value={this.props.term}
@@ -28,7 +28,7 @@ class Contacts extends Component {
          </CardText>
        </Card>
        <Card className="md-card">
-        <CardTitle title="Contact List" subtitle="Click Name For Details"/>
+        <CardTitle title="Health Care Team" subtitle="Click Name For Details"/>
        </Card>
        {this.props.filtered_contacts.map((c, index) => {
         return (
@@ -37,7 +37,6 @@ class Contacts extends Component {
           })}
         <Card className="md-card"> 
         <CardActions> 
-          <RaisedButton type="submit" label="Add Contacts" primary={true} href='./add' />
           </CardActions>
         </Card>
        </div>

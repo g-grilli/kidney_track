@@ -10,6 +10,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/menu';
 import FlatButton from 'material-ui/FlatButton';
+import {lightblue900} from 'material-ui/styles/colors';
 
 import Contacts from './contacts';
 import ContactCard from './contact-card';
@@ -21,6 +22,10 @@ import './App.css'
 
 import { Provider } from 'react-redux';
 import store from './store.js';
+
+const theme = getMuiTheme({
+  palette: {primary1Color: lightblue900}
+});
 
 const NoMatch = ({ location }) => (
   <div>
@@ -53,7 +58,7 @@ class App extends Component {
  render() {
   return (
     <Provider store={store}>
-     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+     <MuiThemeProvider muiTheme={theme}>
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />

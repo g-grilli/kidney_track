@@ -117,7 +117,7 @@ handleExpandChange = (expanded) => {
       <div>
        <form onSubmit={event => this.handleSubmit(event)}>
        <Card classfirstName="md-card">
-        <CardTitle title="Add New Contact"/>
+        <CardTitle title="Add New Team Member"/>
           <CardText>
            <TextField floatingLabelText="First Name"
            value={this.state.firstName}
@@ -168,9 +168,8 @@ handleExpandChange = (expanded) => {
             contentStyle={customContentStyle}
             open={this.state.open}
             >
-            A new contact has been added.
+            A new healthcare team member has been added.
            </Dialog>
-           <RaisedButton label="View Contacts" primary={true} href='/contacts' />
           </CardActions> 
         </Card>
        </form>

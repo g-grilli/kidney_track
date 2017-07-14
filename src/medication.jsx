@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import database, {User} from './fsociety';
-import { addMed } from './actions.js';
+import { addMed } from './actions';
 import { connect } from 'react-redux';
 
 const customContentStyle = {
@@ -29,30 +29,29 @@ class Medication extends Component {
     super(props);
     
     this.state = {
-      drug_name: '',
+      drugName: '',
       dosage: '',
       morning: false,
       afternoon: false,
       evening: false,
-      bed_time:false,
+      bedTime:false,
       meds: []
     };
     
-    this.state.display_contacts = this.state.contacts;
+    this.state.display_meds = this.state.meds;
     
     this.read_data();
   }
   read_data () {
     if (User.user) {
       database.ref('meds/' + User.user.uid)
-        .once('value').then((contacts) => {
-          contacts = contacts.val();
-          console.log(contacts);
-          if (contacts) {
-            this.state.contacts = contacts;
-            this.setState({contacts: this.state.contacts});
-            //this.state.contacts.sort(compare);
-            this.state.display_contacts = this.state.contacts;
+        .once('value').then((meds) => {
+          meds = meds.val();
+          console.log(meds);
+          if (meds) {
+            this.state.meds = meds;
+            this.setState({meds: this.state.meds});
+            this.state.display_meds = this.state.meds;
           }
         });
     } else {
@@ -72,18 +71,18 @@ this.setState({new_state});
 }  
 
 handleSubmit(event) {
-  console.log('submitted: ' + this.state.firstName +' '+ this.state.email);
+  console.log('submitted: ' + this.state.drugName +' '+ this.state.dosage);
   event.preventDefault();
 }
 
 handleAddMed = () => {
   this.props.onSubmit({
-    firstName: this.state.drug_name,
-    lastName: this.state.dosage,
-    practice: this.state.morning,
-    specialty: this.state.afternoon,
-    email: this.state.evening, 
-    phone: this.state.bed_time, 
+    drugName: this.state.drugName,
+    dosage: this.state.dosage,
+    morning: this.state.morning,
+    afternoon: this.state.afternoon,
+    evening: this.state.evening, 
+    bedTime: this.state.bedTime, 
     isOpened: false
   });
   
@@ -112,7 +111,7 @@ handleExpandChange = (expanded) => {
         <CardTitle title="Add Medication"/>
           <CardText>
            <TextField floatingLabelText="Drug Name"
-           value={this.state.drug_name}
+           value={this.state.drugName}
            onChange={event => this.update_state(event, 'drugName')}/>
            <br/>
            <TextField floatingLabelText="Dosage"
@@ -132,8 +131,8 @@ handleExpandChange = (expanded) => {
            onChange={event => this.update_state(event, 'evening')}/>
            <br/>
             <TextField floatingLabelText="Bed Time"
-           value={this.state.bed_time}
-           onChange={event => this.update_state(event, 'bed_time')}/>
+           value={this.state.bedTime}
+           onChange={event => this.update_state(event, 'bedTime')}/>
            <br/>
            <TextField floatingLabelText="Notes"
            value={this.state.notes}
@@ -141,9 +140,9 @@ handleExpandChange = (expanded) => {
            <br/>
           </CardText>
           <CardActions>
-          <RaisedButton type="submit" label="Add Medication" primary={true} onTouchTap={this.handleMedicationContact}/>
+          <RaisedButton type="submit" label="Add Medication" primary={true} onTouchTap={this.handleAddMed}/>
            <Dialog
-            title="Medication Contact"
+            title="Medication"
             actions={actions}
             modal={true}
             contentStyle={customContentStyle}
@@ -151,7 +150,6 @@ handleExpandChange = (expanded) => {
             >
             A new prescription has been added.
            </Dialog>
-           <RaisedButton label="View Contacts" primary={true} href='/contacts' />
           </CardActions> 
         </Card>
        </form>
