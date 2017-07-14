@@ -4,6 +4,7 @@ import Schedule from './schedule'
 import Contacts from './contacts'
 import Add from './add'
 import Medication from './medication'
+import Health from './health'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import {List, ListItem} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
@@ -95,6 +96,7 @@ class Main extends Component {
                 </TableRow>
                 </TableBody>
               </Table>
+              <Health/>
              </CardText>
           </Card>
           <Card className="md-card">
@@ -157,7 +159,6 @@ class Main extends Component {
               </List>
              </CardText>
           </Card>
-          
         </div>
       </div>
     );

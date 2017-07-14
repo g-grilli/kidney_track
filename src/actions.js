@@ -50,7 +50,7 @@ export function doSearch (term) {
 }
 export function addMed (data) {
   return {
-    type: 'ADD_MEDS',
+    type: 'ADD_MED',
     data: data
   }
 }
@@ -77,7 +77,35 @@ export function initMed (data) {
     data: data
   }
 }
+export function addHealth (data) {
+  return {
+    type: 'ADD_HEALTH',
+    data: data
+  }
+}
 
+export function editHealth (index, data) {
+  return {
+    type: 'EDIT_HEALTH',
+    index: index,
+    data: data
+  }
+}
+
+export function deleteHealth (findex, oindex) {
+  return {
+    type: 'DELETE_HEALTH',
+    findex: findex,
+    oindex: oindex
+  }
+}
+
+export function initHealth (data) {
+  return {
+    type: 'INIT_HEALTH',
+    data: data
+  }
+}
 
 
 

@@ -12,6 +12,10 @@ var debounceSort = debounce(sort_state, 1000);
 var initialState = {
   contacts: [],
   filtered: [],
+  meds:[],
+  appointments: [],
+  notes: [],
+  health: [],
   term: ''
 };
 
@@ -31,8 +35,7 @@ export function contacts (state, action) {
   }
   switch (action.type) {
     case 'ADD_CONTACT':
-      var new_state = {};
-      
+      var new_state = Object.assign({}, state);
       new_state.filtered = [...state.filtered];
       new_state.contacts = [...state.contacts];
       
@@ -45,7 +48,7 @@ export function contacts (state, action) {
       return new_state;
       
     case 'EDIT_CONTACT':
-      var new_state = {};
+      var new_state = Object.assign({}, state);
       
       new_state.filtered = [...state.filtered];
       new_state.contacts = [...state.contacts];
@@ -58,7 +61,7 @@ export function contacts (state, action) {
       return new_state;
       
     case 'DO_SORT':
-      new_state = {};
+      new_state = Object.assign({}, state);
       
       new_state.filtered = [...state.filtered];
       new_state.contacts = [...state.contacts];
@@ -70,7 +73,7 @@ export function contacts (state, action) {
     case 'DO_SEARCH':
       var filter_contacts = [];
       var contacts = [];
-      new_state = {};
+      new_state = Object.assign({}, state);
       
       state.contacts.forEach(function (c, index) {
         if (c.lastName.toLowerCase().search(action.term.toLowerCase()) > -1) {
@@ -89,7 +92,7 @@ export function contacts (state, action) {
       return new_state;
       
     case 'DELETE_CONTACT':
-      new_state = {};
+      new_state = Object.assign({}, state);
       
       new_state.filtered = [...state.filtered];
       new_state.contacts = [...state.contacts];
@@ -105,7 +108,7 @@ export function contacts (state, action) {
       return new_state;
       
     case 'DO_EXPAND':
-      new_state = {};
+      new_state = Object.assign({}, state);
       
       new_state.filtered = [...state.filtered];
       new_state.contacts = [...state.contacts];
@@ -115,15 +118,82 @@ export function contacts (state, action) {
       return new_state;
       
     case 'INIT_CONTACTS':
-      var filtered = [];
-      action.data.forEach(function (c, index) {
-        filtered.push(Object.assign({}, c, {orig: index, expanded: false}));
-      });
+      new_state = Object.assign({}, state, action.data);
+      // var filtered = [];
+      // action.data.forEach(function (c, index) {
+      //   filtered.push(Object.assign({}, c, {orig: index, expanded: false}));
+      // });
       
-      return {
-        contacts: action.data,
-        filtered: filtered
-      };
+      return new_state;
+      
+    case 'ADD_MED':
+      new_state = Object.assign({}, state);
+      console.log(new_state);
+      new_state.meds = [...state.meds];
+      
+      new_state.meds.push(action.data);
+      
+      console.log(new_state);
+      return new_state;
+      
+    case 'EDIT_MED':
+      var new_state = Object.assign({}, state);
+      
+      new_state.meds = [...state.meds];
+      
+      var data = Object.assign({}, action.data);
+      delete data.orig;
+      new_state.meds[action.data.orig] = data;
+      new_state.filtered[action.index] = action.data;
+      
+      return new_state;
+      
+    case 'DELETE_MED':
+      new_state = Object.assign({}, state);
+      
+      new_state.meds = [...state.meds];
+      
+      
+      console.log(action.findex, action.oindex);
+      new_state.filtered.splice(action.findex, 1);
+      new_state.meds.splice(action.oindex, 1);
+      
+      return new_state;
+      
+
+    case 'ADD_HEALTH':
+      new_state = Object.assign({}, state);
+      console.log(new_state);
+      new_state.health = [...state.health];
+      
+      new_state.health.push(action.data);
+      
+      console.log(new_state);
+      return new_state;
+      
+    case 'EDIT_HEALTH':
+      var new_state = {};
+      
+      new_state.health = [...state.health];
+      
+      var data = Object.assign({}, action.data);
+      delete data.orig;
+      new_state.meds[action.data.orig] = data;
+      new_state.filtered[action.index] = action.data;
+      
+      return new_state;
+      
+    case 'DELETE_HEALTH':
+      new_state = {};
+      
+      new_state.health = [...state.health];
+      
+      
+      console.log(action.findex, action.oindex);
+      new_state.filtered.splice(action.findex, 1);
+      new_state.health.splice(action.oindex, 1);
+      
+      return new_state;
       
     default:
       return state;
@@ -131,4 +201,4 @@ export function contacts (state, action) {
 }
 
 
-export default contacts;
+export default contacts

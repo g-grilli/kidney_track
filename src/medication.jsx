@@ -14,9 +14,9 @@ const customContentStyle = {
 };
 
 class Medication extends Component {
-  state = {
-    open: false
-    };
+ state = {
+  open: false
+ };
     
  handleOpen = () => {
     this.setState({open: true});
@@ -161,7 +161,7 @@ handleExpandChange = (expanded) => {
 
 //export default Medication
 function mapStateToProps (state) {
-  return {meds: state}
+  return {meds: state.meds}
 }
 
 function mapDispatchToProps (dispatch) {
