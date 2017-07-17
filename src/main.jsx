@@ -4,6 +4,7 @@ import Schedule from './schedule'
 import Contacts from './contacts'
 import Add from './add'
 import Medication from './medication'
+import Meds from './meds'
 import Health from './health'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import {List, ListItem} from 'material-ui/List';
@@ -25,45 +26,16 @@ class Main extends Component {
     return (
       <div className="Main">
         <div>
-          <Card className="md-card">
-            <CardHeader
-             title='Prescriptions'
-             subtitle='Dosage & Schedule'
-             actAsExpander={true}
-             showExpandableButton={true}/>
-             <CardText expandable={true}>
-              <Table allRowsSelected={false}>
-               <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-                <TableRow striped={true}>
-                 <TableHeaderColumn>Medication</TableHeaderColumn>
-                 <TableHeaderColumn>Dosage</TableHeaderColumn>
-                 <TableHeaderColumn>Morning</TableHeaderColumn>
-                 <TableHeaderColumn>Afternoon</TableHeaderColumn>
-                 <TableHeaderColumn>Evening</TableHeaderColumn>
-                 <TableHeaderColumn>Bed Time</TableHeaderColumn>
-                </TableRow>
-                </TableHeader>
-                <TableBody displayRowCheckbox={false}>
-                <TableRow>
-                 <TableHeaderColumn>Asprin</TableHeaderColumn>
-                 <TableHeaderColumn>500mg</TableHeaderColumn>
-                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
-                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
-                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
-                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
-                </TableRow>
-                <TableRow>
-                 <TableHeaderColumn>Placebo</TableHeaderColumn>
-                 <TableHeaderColumn>1mg</TableHeaderColumn>
-                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
-                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
-                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
-                 <TableHeaderColumn>{<Checkbox/>}</TableHeaderColumn>
-                </TableRow>
-                </TableBody>
-              </Table>
-              <Medication/>
-             </CardText>
+         <Card className="md-card">
+          <CardHeader
+           title='Prescriptions'
+           subtitle='Dosage & Schedule'
+           actAsExpander={true}
+           showExpandableButton={true}/>
+           <CardText expandable={true}>
+            <Meds/>
+            <Medication/>
+           </CardText>
           </Card>
           <Card className="md-card">
            <CardHeader

@@ -46,6 +46,9 @@ class ContactCard extends Component {
   }
   
   render () {
+    
+    
+    
     return (
       <Card className="md-card" expanded={this.props.expanded} onExpandChange={(e) => this.handleExpandChange(this.props.index, e)}>
         <CardHeader

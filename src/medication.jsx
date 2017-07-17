@@ -3,6 +3,8 @@ import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import Checkbox from 'material-ui/Checkbox';
 import Dialog from 'material-ui/Dialog';
 import database, {User} from './fsociety';
 import { addMed } from './actions';
