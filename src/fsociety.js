@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 
-import { initContacts, initMed } from './actions';
+import { initContacts } from './actions';
 import store from './store';
 
 var config = {
@@ -26,15 +26,15 @@ export function auth () {
         read_data();
         
         setTimeout(function () {
-         database.ref('contacts/'+User.user.uid)
-          .once('value').then(function(contacts) {
-           console.log(contacts.val());
+         database.ref('data/'+ User.user.uid)
+          .once('value').then(function(data) {
+           console.log(data.val());
            }); 
         }, 2000);
 
-        database.ref('contacts/' +User.user.uid)
-         .on('value', function(contacts) {
-          console.log(contacts.val());
+        database.ref('data/' + User.user.uid)
+         .on('value', function(data) {
+          console.log(data.val());
          });
       })
       .catch(function (e) {
@@ -55,7 +55,7 @@ function read_data () {
 }
 
 let unsubscribe = store.subscribe(() => {
-  database.ref('data/' +User.user.uid).set(
+  database.ref('data/' + User.user.uid).set(
     store.getState()
   );
 });

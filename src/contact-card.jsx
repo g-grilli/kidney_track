@@ -58,13 +58,13 @@ class ContactCard extends Component {
           showExpandableButton={true}/>
         <CardText expandable={true}>
           <TextField floatingLabelText="First Name" value={this.props.contact.firstName} onChange={(event) => this.handleField(event, 'firstName', this.props.index, this.props.contact.orig)}/><br/>
-          Address:<br/>
+          <br/>
           <TextField floatingLabelText="Last Name" value={this.props.contact.lastName} onChange={(event) => this.handleField(event, 'lastName', this.props.index, this.props.contact.orig)}/><br/>
-          Address:<br/>
+          <br/>
           <TextField floatingLabelText="Specialty" value={this.props.contact.specialty} onChange={(event) => this.handleField(event, 'specialty', this.props.index, this.props.contact.orig)}/><br/>
-          Address:<br/>
+          <br/>
           <TextField floatingLabelText="Practice" value={this.props.contact.practice} onChange={(event) => this.handleField(event, 'practice', this.props.index, this.props.contact.orig)}/><br/>
-          Address:<br/>
+          <br/>
           <TextField floatingLabelText="Address" value={this.props.contact.address} onChange={(event) => this.handleField(event, 'address', this.props.index, this.props.contact.orig)} />
           <br/>
           <TextField floatingLabelText="City" value={this.props.contact.city} onChange={(event) => this.handleField(event, 'city', this.props.index, this.props.contact.orig)}/> 

@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {Card, CardTitle, CardActions, CardText} from 'material-ui/Card';
-
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-
-
 import {editContact, deleteContact, doSort, doSearch} from './actions.js';
 import {connect} from 'react-redux';
 import ContactCard from './contact-card';

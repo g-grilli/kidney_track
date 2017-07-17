@@ -1,5 +1,4 @@
 import debounce from 'debounce';
-
 import {doSort, doSearch} from './actions';
 import store from './store';
 
@@ -13,9 +12,13 @@ var initialState = {
   contacts: [],
   filtered: [],
   meds:[],
-  appointments: [],
+  filtered_meds: [],
+  schedule: [],
+  filtered_schedule: [],
   notes: [],
+  filtered_notes: [],
   health: [],
+  filtered_health: [],
   term: ''
 };
 
@@ -29,7 +32,7 @@ function compare(a,b) {
   return 0;
 }
 
-export function contacts (state, action) {
+export function data (state, action) {
   if (state === undefined) {
     return initialState;
   }
@@ -48,7 +51,7 @@ export function contacts (state, action) {
       return new_state;
       
     case 'EDIT_CONTACT':
-      var new_state = Object.assign({}, state);
+      new_state = Object.assign({}, state);
       
       new_state.filtered = [...state.filtered];
       new_state.contacts = [...state.contacts];
@@ -112,6 +115,10 @@ export function contacts (state, action) {
       
       new_state.filtered = [...state.filtered];
       new_state.contacts = [...state.contacts];
+      new_state.meds = [...state.meds];
+      new_state.notes = [...state.notes];
+      new_state.health = [...state.health];
+      new_state.schedule = [...state.schedule];
       
       new_state.filtered[action.index].expanded = action.expanded;
       
@@ -128,7 +135,7 @@ export function contacts (state, action) {
       
     case 'ADD_MED':
       new_state = Object.assign({}, state);
-      console.log(new_state);
+      new_state.filtered_meds = [...state.filtered_meds];
       new_state.meds = [...state.meds];
       
       new_state.meds.push(action.data);
@@ -137,25 +144,25 @@ export function contacts (state, action) {
       return new_state;
       
     case 'EDIT_MED':
-      var new_state = Object.assign({}, state);
-      
+      new_state = Object.assign({}, state);
+      new_state.filtered_meds = [...state.filtered_meds];
       new_state.meds = [...state.meds];
       
-      var data = Object.assign({}, action.data);
+      data = Object.assign({}, action.data);
       delete data.orig;
-      new_state.meds[action.data.orig] = data;
-      new_state.filtered[action.index] = action.data;
+      new_state.meds[action.index] = data;
+      new_state.filtered_meds[action.index] = action.data;
       
       return new_state;
       
     case 'DELETE_MED':
       new_state = Object.assign({}, state);
-      
+      new_state.filtered_meds = [...state.filtered_meds];
       new_state.meds = [...state.meds];
       
       
       console.log(action.findex, action.oindex);
-      new_state.filtered.splice(action.findex, 1);
+      new_state.filtered_meds.splice(action.findex, 1);
       new_state.meds.splice(action.oindex, 1);
       
       return new_state;
@@ -163,7 +170,7 @@ export function contacts (state, action) {
 
     case 'ADD_HEALTH':
       new_state = Object.assign({}, state);
-      console.log(new_state);
+      new_state.filtered_health = [...state.filtered_health];
       new_state.health = [...state.health];
       
       new_state.health.push(action.data);
@@ -172,26 +179,97 @@ export function contacts (state, action) {
       return new_state;
       
     case 'EDIT_HEALTH':
-      var new_state = {};
+      new_state = Object.assign({}, state);;
       
+      new_state.filtered_health = [...state.filtered_health];
       new_state.health = [...state.health];
       
-      var data = Object.assign({}, action.data);
+      data = Object.assign({}, action.data);
       delete data.orig;
-      new_state.meds[action.data.orig] = data;
-      new_state.filtered[action.index] = action.data;
+      new_state.health[action.index] = data;
+      new_state.filtered_health[action.index] = action.data;
       
       return new_state;
       
     case 'DELETE_HEALTH':
-      new_state = {};
+      new_state = Object.assign({}, state);
       
+      new_state.filtered_health = [...state.filtered_health];
       new_state.health = [...state.health];
       
       
       console.log(action.findex, action.oindex);
-      new_state.filtered.splice(action.findex, 1);
+      new_state.filtered_health.splice(action.findex, 1);
       new_state.health.splice(action.oindex, 1);
+      
+      return new_state;
+      
+    case 'ADD_SCHEDULE':
+      new_state = Object.assign({}, state);
+      new_state.filtered_schedule = [...state.filtered_schedule];
+      new_state.schedule = [...state.schedule];
+      
+      new_state.schedule.push(action.data);
+      
+      console.log(new_state);
+      return new_state;
+      
+    case 'EDIT_SCHEDULE':
+      new_state = Object.assign({}, state);
+      
+      new_state.schedule = [...state.schedule];
+      
+      data = Object.assign({}, action.data);
+      delete data.orig;
+      new_state.schedule[action.index] = data;
+      new_state.filtered_schedule[action.index] = action.data;
+      
+      return new_state;
+      
+    case 'DELETE_SCHEDULE':
+      new_state = Object.assign({}, state);
+      
+      new_state.filtered_schedule = [...state.filtered_schedule];
+      new_state.schedule = [...state.contacts];
+      
+      
+      console.log(action.findex, action.oindex);
+      new_state.filtered_schedule.splice(action.findex, 1);
+      new_state.schedule.splice(action.oindex, 1);
+      
+      return new_state;
+    
+      case 'ADD_NOTES':
+      new_state = Object.assign({}, state);
+      new_state.filtered_notes = [...state.filtered_notes];
+      new_state.notes = [...state.notes];
+      
+      new_state.notes.push(action.data);
+      
+      console.log(new_state);
+      return new_state;
+      
+    case 'EDIT_NOTES':
+      new_state = Object.assign({}, state);
+      new_state.filtered_notes = [...state.filtered_notes];
+      new_state.notes = [...state.notes];
+      
+      data = Object.assign({}, action.data);
+      delete data.orig;
+      new_state.notes[action.index] = data;
+      new_state.filtered_notes[action.index] = action.data;
+      
+      return new_state;
+      
+    case 'DELETE_NOTES':
+      new_state = Object.assign({}, state);
+      new_state.filtered_notes = [...state.filtered_notes];
+      new_state.notes = [...state.notes];
+      
+      
+      console.log(action.findex, action.oindex);
+      new_state.filtered.splice(action.findex, 1);
+      new_state.notes.splice(action.oindex, 1);
       
       return new_state;
       
@@ -201,4 +279,4 @@ export function contacts (state, action) {
 }
 
 
-export default contacts
+export default data

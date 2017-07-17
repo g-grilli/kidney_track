@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import {Card, CardHeader, CardTitle, CardActions, CardText} from 'material-ui/Card';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
+import {Card, CardTitle, CardActions} from 'material-ui/Card';
 import './App.css'
-import FlatButton from 'material-ui/FlatButton';
-import {editContact, deleteContact, doSort, doSearch, editMed, deleteMed} from './actions.js';
+import {editMed, deleteMed} from './actions.js';
 import MedCard from './med-card';
 import {connect} from 'react-redux';
 
@@ -12,6 +9,7 @@ class Meds extends Component {
   
 
     render() {
+      console.log(this.props.meds);
     return (
       <div>
        <Card className="md-card">
@@ -19,21 +17,7 @@ class Meds extends Component {
        
        {this.props.meds.map((c, index) => {
         return (
-          <Table allRowsSelected={false}>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-           <TableRow striped={true}>
-            <TableHeaderColumn>Medication</TableHeaderColumn>
-              <TableHeaderColumn>Dosage</TableHeaderColumn>
-               <TableHeaderColumn>Morning</TableHeaderColumn>
-               <TableHeaderColumn>Afternoon</TableHeaderColumn>
-               <TableHeaderColumn>Evening</TableHeaderColumn>
-               <TableHeaderColumn>Bed Time</TableHeaderColumn>
-            </TableRow>
-            </TableHeader>
-            <TableBody displayRowCheckbox={false}>
-            <MedCard med={c} expanded={c.expanded} index={index} key={c.drugName}/>
-            </TableBody>
-            </Table>
+          <MedCard med={c} expanded={c.expanded} index={index} key={c.drugName}/>
             )
           })}
         </Card>

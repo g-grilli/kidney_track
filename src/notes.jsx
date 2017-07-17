@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import DatePicker from 'material-ui/DatePicker';
 import database, {User} from './fsociety';
-import { addHealth } from './actions';
+import { addNotes } from './actions';
 import { connect } from 'react-redux';
 
 const customContentStyle = {
@@ -14,7 +14,7 @@ const customContentStyle = {
   maxWidth: 'none',
 };
 
-class Health extends Component {
+class Notes extends Component {
   
  state = {
   open: false
@@ -36,27 +36,24 @@ class Health extends Component {
     
     this.state = {
       date: '',
-      weight: '',
-      systolic: '',
-      diastolic: '',
-      notes: '',
-      health: []
+      note: '',
+      notes: []
     };
     
-    this.state.display_health = this.state.health;
+    this.state.display_notes = this.state.notes;
     
     this.read_data();
   }
   read_data () {
     if (User.user) {
-      database.ref('health/' + User.user.uid)
-        .once('value').then((health) => {
-          health = health.val();
-          console.log(health);
-          if (health) {
-            this.state.health = health;
-            this.setState({health: this.state.health});
-            this.state.display_health = this.state.health;
+      database.ref('notes/' + User.user.uid)
+        .once('value').then((notes) => {
+          notes = notes.val();
+          console.log(notes);
+          if (notes) {
+            this.state.notes = notes;
+            this.setState({health: this.state.notes});
+            this.state.display_notes = this.state.notes;
           }
         });
     } else {
@@ -76,17 +73,14 @@ this.setState({new_state});
 }  
 
 handleSubmit(event) {
-  console.log('submitted: ' + this.state.date +' '+ this.state.weight + this.state.diastolic +' '+ this.state.systolic);
+  console.log('submitted: ' + this.state.date +' '+ this.state.note);
   event.preventDefault();
 }
 
-handleAddHealth = () => {
+handleAddNote = () => {
   this.props.onSubmit({
     date: this.state.date,
-    weight: this.state.weight,
-    systolic: this.state.systolic,
-    diastolic: this.state.diastolic,
-    notes: this.state.notes,
+    weight: this.state.note,
     isOpened: false
   });
   
@@ -112,39 +106,27 @@ handleExpandChange = (expanded) => {
       <div>
        <form onSubmit={event => this.handleSubmit(event)}>
        <Card classfirstName="md-card">
-        <CardTitle title="Add Health"/>
+        <CardTitle title="Add Note"/>
           <CardText>
-           <DatePicker hintText="Appointment Date"
-            value={this.state.date}
-            onChange={event => this.handleChangeDate(event, 'date')}/>
-           <br/>
-           <TextField floatingLabelText="Weight"
+           <DatePicker floatingLabelText="Date"
             value={this.state.weight}
-            onChange={event => this.update_state(event, 'weight')}/>
+            onChange={event => this.update_state(event, 'date')}/>
            <br/>
-           <TextField floatingLabelText="Systolic"
-            value={this.state.systolic}
-            onChange={event => this.update_state(event, 'systolic')}/>
-           <br/>
-           <TextField floatingLabelText="Diastolic"
-            value={this.state.diastolic}
-            onChange={event => this.update_state(event, 'diastolic')}/>
-           <br/>
-           <TextField floatingLabelText="Notes"
-            value={this.state.notes}
-            onChange={event => this.update_state(event, 'notes')}/>
+           <TextField floatingLabelText="Note"
+            value={this.state.note}
+            onChange={event => this.update_state(event, 'note')}/>
            <br/>
           </CardText>
           <CardActions>
-          <RaisedButton type="submit" label="Add Readings" primary={true} onTouchTap={this.handleAddHealth}/>
+          <RaisedButton type="submit" label="Add Note" primary={true} onTouchTap={this.handleAddNote}/>
            <Dialog
-            title="Health"
+            title="Notes"
             actions={actions}
             modal={true}
             contentStyle={customContentStyle}
             open={this.state.open}
             >
-            Great job! You succesfully added your health information.
+            Great job! You succesfully added a new note.
            </Dialog>
           </CardActions> 
         </Card>
@@ -157,18 +139,18 @@ handleExpandChange = (expanded) => {
 
 
 function mapStateToProps (state) {
-  return {health: state.health}
+  return {notes: state.notes}
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     onSubmit: function (data) {
-      dispatch(addHealth(data))
+      dispatch(addNotes(data))
     }
   }
 }
 
-Health = connect(mapStateToProps, mapDispatchToProps)(Health)
+Notes = connect(mapStateToProps, mapDispatchToProps)(Notes)
 
 
-export default Health
+export default Notes

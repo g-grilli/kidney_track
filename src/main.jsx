@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import Schedule from './schedule'
+import ScheduleStatus from './schedule-status'
 import Contacts from './contacts'
 import Add from './add'
 import Medication from './medication'
 import Meds from './meds'
 import Health from './health'
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import {List, ListItem} from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
+import HealthStatus from './health-status'
+import Notes from './notes'
+import NotesStatus from './notes-status'
 import { addContact } from './actions.js';
 import { connect } from 'react-redux';
 import './main.css'
@@ -44,30 +45,7 @@ class Main extends Component {
              actAsExpander={true}
              showExpandableButton={true}/>
              <CardText expandable={true}>
-              <Table>
-                <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-                <TableRow striped={true}>
-                 <TableHeaderColumn>Date</TableHeaderColumn>
-                 <TableHeaderColumn>Weight lbs.</TableHeaderColumn>
-                 <TableHeaderColumn>Systolic</TableHeaderColumn>
-                 <TableHeaderColumn>Diastolic</TableHeaderColumn>
-                </TableRow>
-                </TableHeader>
-                <TableBody displayRowCheckbox={false}>
-                <TableRow>
-                 <TableHeaderColumn>7/14/2017</TableHeaderColumn>
-                 <TableHeaderColumn>115</TableHeaderColumn>
-                 <TableHeaderColumn>80</TableHeaderColumn>
-                 <TableHeaderColumn>70</TableHeaderColumn>
-                </TableRow>
-                <TableRow>
-                 <TableHeaderColumn>7/15/2017</TableHeaderColumn>
-                 <TableHeaderColumn>117</TableHeaderColumn>
-                 <TableHeaderColumn>90</TableHeaderColumn>
-                 <TableHeaderColumn>83</TableHeaderColumn>
-                </TableRow>
-                </TableBody>
-              </Table>
+             <HealthStatus/>
               <Health/>
              </CardText>
           </Card>
@@ -78,32 +56,7 @@ class Main extends Component {
              actAsExpander={true}
              showExpandableButton={true}/>
              <CardText expandable={true}>
-              <Table>
-               <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-                <TableRow striped={true}>
-                 <TableHeaderColumn>Doctor</TableHeaderColumn>
-                 <TableHeaderColumn>Specialty</TableHeaderColumn>
-                 <TableHeaderColumn>Date</TableHeaderColumn>
-                </TableRow>
-                </TableHeader>
-                <TableBody displayRowCheckbox={false}>
-                <TableRow striped={true}>
-                 <TableHeaderColumn>Bob Smith</TableHeaderColumn>
-                 <TableHeaderColumn>Vampire</TableHeaderColumn>
-                 <TableHeaderColumn>7/28/2017</TableHeaderColumn>
-                </TableRow>
-                <TableRow>
-                 <TableHeaderColumn>Sue Wanker</TableHeaderColumn>
-                 <TableHeaderColumn>Ghost</TableHeaderColumn>
-                 <TableHeaderColumn>7/30/2017</TableHeaderColumn>
-                </TableRow>
-                <TableRow>
-                 <TableHeaderColumn>Abdul Jsecklas</TableHeaderColumn>
-                 <TableHeaderColumn>Werewolf</TableHeaderColumn>
-                 <TableHeaderColumn>8/15/2017</TableHeaderColumn>
-                </TableRow>
-                </TableBody>
-              </Table>
+              <ScheduleStatus/>
               <Schedule/>
              </CardText>
           </Card>
@@ -124,12 +77,10 @@ class Main extends Component {
              subtitle='Question & Note & To Do'
              actAsExpander={true}
              showExpandableButton={true}/>
-             <CardText expandable={true}>
-              <List>
-              <ListItem leftCheckbox={<Checkbox/>} primaryText='Hello there'/>
-              <ListItem leftCheckbox={<Checkbox/>} primaryText='Can I have pie?'/>
-              </List>
-             </CardText>
+            <CardText expandable={true}>
+             <NotesStatus/>
+             <Notes/>
+            </CardText>
           </Card>
         </div>
       </div>

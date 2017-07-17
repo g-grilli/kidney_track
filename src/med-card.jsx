@@ -1,17 +1,24 @@
 import React, {Component} from 'react';
 
 import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import Checkbox from 'material-ui/Checkbox';
 
 import {editMed, deleteMed, doExpand} from './actions.js';
 import {connect} from 'react-redux';
 
 class MedCard extends Component {
+  handleExpandChange = (index, expanded) => {
+    this.props.doExpand(index, expanded);
+    
+    if (!expanded) {
+      this.props.doSort();
+    }
+  };
   
   handleSubmit(event) {
-    console.log('submitted: ' + this.state.lastName +' '+ this.state.email);
+    console.log('submitted: ' + this.state.drugName +' '+ this.state.dosage);
     event.preventDefault();
   }
   
@@ -51,20 +58,20 @@ class MedCard extends Component {
           actAsExpander={true}
           showExpandableButton={true}/>
         <CardText expandable={true}>
-          <TextField floatingLabelText="Drug Name" value={this.props.med.drugName} onChange={(event) => this.handleField(event, 'drugName', this.props.index, this.props.med.orig)}/><br/>
+          <TextField floatingLabelText="Drug Name" 
+          value={this.props.med.drugName} 
+          onChange={(event) => this.handleField(event, 'drugName', this.props.index, this.props.med.orig)}/><br/>
           Address:<br/>
           <TextField floatingLabelText="Dosage" value={this.props.med.dosage} onChange={(event) => this.handleField(event, 'dosage', this.props.index, this.props.med.orig)}/><br/>
-          Address:<br/>
-          <TextField floatingLabelText="Morning" value={this.props.med.morning} onChange={(event) => this.handleField(event, 'morning', this.props.index, this.props.med.orig)}/><br/>
-          Address:<br/>
-          <TextField floatingLabelText="Noon" value={this.props.med.noon} onChange={(event) => this.handleField(event, 'noon', this.props.index, this.props.med.orig)}/><br/>
-          <TextField floatingLabelText="Evening" value={this.props.med.evening} onChange={(event) => this.handleField(event, 'evening', this.props.index, this.props.med.orig)} />
+          <Checkbox label="Morning" value={this.props.med.morning} onChange={(event) => this.handleField(event, 'morning', this.props.index, this.props.med.orig)}/><br/>
+          <Checkbox label="Noon" value={this.props.med.noon} onChange={(event) => this.handleField(event, 'noon', this.props.index, this.props.med.orig)}/><br/>
+          <Checkbox label="Evening" value={this.props.med.evening} onChange={(event) => this.handleField(event, 'evening', this.props.index, this.props.med.orig)} />
           <br/>
-          <TextField floatingLabelText="Bed Time" value={this.props.med.bedTime} onChange={(event) => this.handleField(event, 'bedTime', this.props.index, this.props.med.orig)}/> 
-          <TextField floatingLabelText="Notes" value={this.props.med.notes} onChange={(event) => this.handleField(event, 'notes', this.props.index, this.props.med.orig)}/> 
+          <Checkbox label="Bed Time" value={this.props.med.bedTime} onChange={(event) => this.handleField(event, 'bedTime', this.props.index, this.props.med.orig)}/> 
+          <TextField label="Notes" value={this.props.med.notes} onChange={(event) => this.handleField(event, 'notes', this.props.index, this.props.med.orig)}/> 
           <CardActions>
            <FlatButton label="Favorite" primary={true} onTouchTap={this.handleMakeFavorite} />
-           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteContact(this.props.index, this.props.contact.orig)}/>
+           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteMed(this.props.index, this.props.med.orig)}/>
            </CardActions>
           </CardText>
       </Card>
@@ -86,6 +93,9 @@ function mapDispatchToProps (dispatch) {
     },
     doDelete: function (findex, oindex) {
       dispatch(deleteMed(findex, oindex))
+    },
+    doExpand: function(index, expanded) {
+      dispatch(doExpand(index, expanded));
     }
   }
 }

@@ -57,7 +57,7 @@ export function addMed (data) {
 
 export function editMed (index, data) {
   return {
-    type: 'EDIT_MEDS',
+    type: 'EDIT_MED',
     index: index,
     data: data
   }
@@ -65,7 +65,7 @@ export function editMed (index, data) {
 
 export function deleteMed (findex, oindex) {
   return {
-    type: 'DELETE_MEDS',
+    type: 'DELETE_MED',
     findex: findex,
     oindex: oindex
   }
@@ -73,7 +73,7 @@ export function deleteMed (findex, oindex) {
 
 export function initMed (data) {
   return {
-    type: 'INIT_MEDS',
+    type: 'INIT_MED',
     data: data
   }
 }
@@ -107,6 +107,65 @@ export function initHealth (data) {
   }
 }
 
+export function addSchedule (data) {
+  return {
+    type: 'ADD_SCHEDULE',
+    data: data
+  }
+}
+
+export function editSchedule (index, data) {
+  return {
+    type: 'EDIT_SCHEDULE',
+    index: index,
+    data: data
+  }
+}
+
+export function deleteSchedule (findex, oindex) {
+  return {
+    type: 'DELETE_SCHEDULE',
+    findex: findex,
+    oindex: oindex
+  }
+}
+
+export function initSchedule (data) {
+  return {
+    type: 'INIT_SCHEDULE',
+    data: data
+  }
+}
+
+export function addNotes (data) {
+  return {
+    type: 'ADD_SCHEDULE',
+    data: data
+  }
+}
+
+export function editNotes (index, data) {
+  return {
+    type: 'EDIT_SCHEDULE',
+    index: index,
+    data: data
+  }
+}
+
+export function deleteNotes (findex, oindex) {
+  return {
+    type: 'DELETE_SCHEDULE',
+    findex: findex,
+    oindex: oindex
+  }
+}
+
+export function initNotes (data) {
+  return {
+    type: 'INIT_SCHEDULE',
+    data: data
+  }
+}
 
 
 

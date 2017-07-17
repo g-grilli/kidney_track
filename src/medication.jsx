@@ -3,7 +3,6 @@ import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Checkbox from 'material-ui/Checkbox';
 import Dialog from 'material-ui/Dialog';
 import database, {User} from './fsociety';
@@ -73,7 +72,7 @@ this.setState({new_state});
 }  
 
 handleSubmit(event) {
-  console.log('submitted: ' + this.state.drugName +' '+ this.state.dosage);
+  console.log('submitted: ' + this.state.drugName +' '+ this.state.dosage +' '+ this.state.morning +' '+ this.state.afternoon +' '+ this.state.evening +' '+ this.state.bedTime);
   event.preventDefault();
 }
 
@@ -120,21 +119,21 @@ handleExpandChange = (expanded) => {
            value={this.state.dosage}
            onChange={event => this.update_state(event, 'dosage')}/>
            <br/>
-           <TextField floatingLabelText="Morning"
+           <Checkbox label="Morning"
            value={this.state.morning}
-           onChange={event => this.update_state(event, 'morning')}/>
+           onCheck={event => this.update_state(event: 'morning')}/>
            <br/>
-           <TextField floatingLabelText="Afternoon"
+           <Checkbox label="Afternoon"
            value={this.state.afternoon}
-           onChange={event => this.update_state(event, 'afternoon')}/>
+           onCheck={event => this.update_state(event, 'afternoon')}/>
            <br/>
-           <TextField floatingLabelText="Evening"
+           <Checkbox label="Evening"
            value={this.state.evening}
-           onChange={event => this.update_state(event, 'evening')}/>
+           onCheck={event => this.update_state(event, 'evening')}/>
            <br/>
-            <TextField floatingLabelText="Bed Time"
+            <Checkbox label="Bed Time"
            value={this.state.bedTime}
-           onChange={event => this.update_state(event, 'bedTime')}/>
+           onCheck={event => this.update_state(event, 'bedTime')}/>
            <br/>
            <TextField floatingLabelText="Notes"
            value={this.state.notes}
