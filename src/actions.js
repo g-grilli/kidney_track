@@ -139,14 +139,14 @@ export function initSchedule (data) {
 
 export function addNotes (data) {
   return {
-    type: 'ADD_SCHEDULE',
+    type: 'ADD_NOTES',
     data: data
   }
 }
 
 export function editNotes (index, data) {
   return {
-    type: 'EDIT_SCHEDULE',
+    type: 'EDIT_NOTES',
     index: index,
     data: data
   }
@@ -154,7 +154,7 @@ export function editNotes (index, data) {
 
 export function deleteNotes (findex, oindex) {
   return {
-    type: 'DELETE_SCHEDULE',
+    type: 'DELETE_NOTES',
     findex: findex,
     oindex: oindex
   }
@@ -162,7 +162,7 @@ export function deleteNotes (findex, oindex) {
 
 export function initNotes (data) {
   return {
-    type: 'INIT_SCHEDULE',
+    type: 'INIT_NOTES',
     data: data
   }
 }

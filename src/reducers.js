@@ -230,7 +230,7 @@ export function data (state, action) {
       new_state = Object.assign({}, state);
       
       new_state.filtered_schedule = [...state.filtered_schedule];
-      new_state.schedule = [...state.contacts];
+      new_state.schedule = [...state.schedule];
       
       
       console.log(action.findex, action.oindex);

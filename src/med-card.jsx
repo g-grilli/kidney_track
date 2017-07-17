@@ -13,7 +13,6 @@ class MedCard extends Component {
     this.props.doExpand(index, expanded);
     
     if (!expanded) {
-      this.props.doSort();
     }
   };
   

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-
-import {Card, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import {editSchedule, deleteSchedule, doExpand} from './actions.js';
 import {connect} from 'react-redux';
@@ -59,6 +59,10 @@ class ScheduleCard extends Component {
           <TextField floatingLabelText="Time" value={this.props.schedule.time} onChange={(event) => this.handleField(event, 'time', this.props.index, this.props.schedule.orig)}/><br/>
           <br/>
           <TextField floatingLabelText="Notes" value={this.props.schedule.notes} onChange={(event) => this.handleField(event, 'notes', this.props.index, this.props.schedule.orig)} />
+          <CardActions>
+           <FlatButton label="Favorite" primary={true} onTouchTap={this.handleMakeFavorite} />
+           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteContact(this.props.index, this.props.contact.orig)}/>
+           </CardActions>
           </CardText>
       </Card>
       </div>

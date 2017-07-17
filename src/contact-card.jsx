@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-
-import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 
 import {editContact, deleteContact, doSort, doSearch, doExpand} from './actions.js';

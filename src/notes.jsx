@@ -80,7 +80,7 @@ handleSubmit(event) {
 handleAddNote = () => {
   this.props.onSubmit({
     date: this.state.date,
-    weight: this.state.note,
+    note: this.state.note,
     isOpened: false
   });
   
@@ -109,7 +109,7 @@ handleExpandChange = (expanded) => {
         <CardTitle title="Add Note"/>
           <CardText>
            <DatePicker floatingLabelText="Date"
-            value={this.state.weight}
+            value={this.state.date}
             onChange={event => this.update_state(event, 'date')}/>
            <br/>
            <TextField floatingLabelText="Note"

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-
-import {Card, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import {editNotes, deleteNotes, doExpand} from './actions.js';
 import {connect} from 'react-redux';
@@ -51,6 +51,10 @@ class NotesCard extends Component {
           <TextField floatingLabelText="Date" value={this.props.notes.date} onChange={(event) => this.handleField(event, 'date', this.props.index, this.props.notes.orig)}/><br/>
           <br/>
           <TextField floatingLabelText="Note" value={this.props.notes.note} onChange={(event) => this.handleField(event, 'note', this.props.index, this.props.notes.orig)}/><br/>
+          <CardActions>
+           <FlatButton label="Favorite" primary={true} onTouchTap={this.handleMakeFavorite} />
+           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteContact(this.props.index, this.props.contact.orig)}/>
+           </CardActions>
           </CardText>
       </Card>
       </div>
