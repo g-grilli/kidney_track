@@ -9,6 +9,7 @@ import Meds from './meds'
 import Health from './health'
 import HealthStatus from './health-status'
 import Notes from './notes'
+import Home from './home'
 import NotesStatus from './notes-status'
 import { addContact } from './actions.js';
 import { connect } from 'react-redux';
@@ -81,6 +82,9 @@ class Main extends Component {
              <NotesStatus/>
              <Notes/>
             </CardText>
+          </Card>
+          <Card>
+          <Home/>
           </Card>
         </div>
       </div>
