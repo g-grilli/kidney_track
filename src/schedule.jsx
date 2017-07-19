@@ -22,6 +22,7 @@ const customContentStyle = {
 class Schedule extends Component {
    state = {
     value: 1,
+    open: false
   };
    
    
@@ -85,8 +86,8 @@ class Schedule extends Component {
   this.props.onSubmit({
     scheduleTime: this.state.scheduleTime,
     scheduleDate: this.state.scheduleDate,
-    practice: this.state.firstName,
-    specialty: this.state.lastName,
+    firstName: this.state.firstName,
+    lastName: this.state.lastName,
     scheduleType: this.state.scheduleType, 
     isOpened: false
   });
@@ -96,6 +97,14 @@ class Schedule extends Component {
   
   handleChange = (event, index, value) => {
   this.setState({value});
+  };
+  
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
   };
   
   handleExpandChange = (expanded) => {

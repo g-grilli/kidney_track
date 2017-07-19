@@ -186,36 +186,36 @@ export function doNExpand (index, expanded) {
 }
 export function doSSearch (term) {
   return {
-    type: 'DO_NSEARCH',
+    type: 'DO_SSEARCH',
     term: term
   }
 }
 export function doSSort () {
   return {
-    type: 'DO_NSORT'
+    type: 'DO_SSORT'
   }
 }
 export function doSExpand (index, expanded) {
   return {
-    type: 'DO_NEXPAND',
+    type: 'DO_SEXPAND',
     expanded: expanded,
     index: index
   }
 }
 export function doMSearch (term) {
   return {
-    type: 'DO_NSEARCH',
+    type: 'DO_MSEARCH',
     term: term
   }
 }
 export function doMSort () {
   return {
-    type: 'DO_NSORT'
+    type: 'DO_MSORT'
   }
 }
 export function doMExpand (index, expanded) {
   return {
-    type: 'DO_NEXPAND',
+    type: 'DO_MEXPAND',
     expanded: expanded,
     index: index
   }

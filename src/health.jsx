@@ -20,8 +20,8 @@ class Health extends Component {
   open: false
  };
  
- handleChangeDate = (event, date) => {
-    this.setState({date: date});
+ handleChangeDate = (event, healthDate) => {
+    this.setState({healthDate: healthDate});
   };
     
  handleOpen = () => {
@@ -35,7 +35,7 @@ class Health extends Component {
     super(props);
     
     this.state = {
-      date: '',
+      healthDate: '',
       weight: '',
       systolic: '',
       diastolic: '',
@@ -76,13 +76,14 @@ this.setState({new_state});
 }  
 
 handleSubmit(event) {
-  console.log('submitted: ' + this.state.date +' '+ this.state.weight + this.state.diastolic +' '+ this.state.systolic);
+  console.log(this.state.healthDate.getTime());
+  console.log('submitted: ' + this.state.healthDate +' '+ this.state.weight + this.state.diastolic +' '+ this.state.systolic);
   event.preventDefault();
 }
 
 handleAddHealth = () => {
   this.props.onSubmit({
-    date: this.state.date,
+    healthDate: this.state.healthDate,
     weight: this.state.weight,
     systolic: this.state.systolic,
     diastolic: this.state.diastolic,
@@ -92,10 +93,6 @@ handleAddHealth = () => {
   
   this.setState({open: true});
 }
-
-handleExpandChange = (expanded) => {
-  this.setState({expanded: expanded});
-};
 
 handleExpandChange = (expanded) => {
   this.setState({expanded: expanded});
@@ -114,9 +111,9 @@ handleExpandChange = (expanded) => {
        <Card classfirstName="md-card">
         <CardTitle title="Add Health"/>
           <CardText>
-           <DatePicker hintText="Appointment Date"
-            value={this.state.date}
-            onChange={event => this.handleChangeDate(event, 'date')}/>
+           <DatePicker hintText="Entry Date" mode="landscape"
+            value={this.state.healthDate}
+            onChange={this.handleChangeDate}/>
            <br/>
            <TextField floatingLabelText="Weight"
             value={this.state.weight}

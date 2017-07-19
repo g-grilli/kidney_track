@@ -34,13 +34,13 @@ class ScheduleCard extends Component {
 
   handleField (event, field, findex, oindex) {
     console.log(event.target.value);
-    var new_notes = Object.assign(
+    var new_schedule = Object.assign(
       {},
-      this.props.notes,
+      this.props.schedule,
       {[field]: event.target.value}
     );
     
-    this.props.onSubmit(findex, new_notes);
+    this.props.onSubmit(findex, new_schedule);
   }
   
   render () {
@@ -51,23 +51,32 @@ class ScheduleCard extends Component {
       <div>
       <Card className="md-card" expanded={this.props.expanded} onExpandChange={(e) => this.handleExpandChange(this.props.index, e)}>
         <CardHeader
-          title={this.props.schedule.scheduleDate}
+          title={this.props.schedule.firstName}
           subtitle={this.props.schedule.lastName}
           actAsExpander={true}
           showExpandableButton={true}/>
         <CardText expandable={true}>
-          <TextField floatingLabelText="Time" value={this.props.schedule.scheduleTime} onChange={(event) => this.handleField(event, 'scheduleTime', this.props.index, this.props.schedule.orig)}/><br/>
+          <TextField floatingLabelText="Time" 
+          value={this.props.schedule.scheduleTime} 
+          onChange={(event) => this.handleField(event, 'scheduleTime', this.props.index, this.props.schedule.orig)}/><br/>
           <br/>
-          <TextField floatingLabelText="Date" value={this.props.schedule.scheduleTime} onChange={(event) => this.handleField(event, 'scheduleDate', this.props.index, this.props.schedule.orig)}/><br/>
+          <TextField floatingLabelText="Date" 
+          value={this.props.schedule.scheduleTime} 
+          onChange={(event) => this.handleField(event, 'scheduleDate', this.props.index, this.props.schedule.orig)}/><br/>
           <br/>
-          <TextField floatingLabelText="Visit Type" value={this.props.schedule.visitType} onChange={(event) => this.handleField(event, 'visitType', this.props.index, this.props.schedule.orig)}/><br/>
+          <TextField floatingLabelText="Visit Type" 
+          value={this.props.schedule.visitType} 
+          onChange={(event) => this.handleField(event, 'visitType', this.props.index, this.props.schedule.orig)}/><br/>
           <br/>
-          <TextField floatingLabelText="LastName" value={this.props.schedule.firstName} onChange={(event) => this.handleField(event, 'firstName', this.props.index, this.props.schedule.orig)}/><br/>
+          <TextField floatingLabelText="LastName" 
+          value={this.props.schedule.firstName} 
+          onChange={(event) => this.handleField(event, 'firstName', this.props.index, this.props.schedule.orig)}/><br/>
           <br/>
-          <TextField floatingLabelText="LastName" value={this.props.schedule.lastName} onChange={(event) => this.handleField(event, 'lastName', this.props.index, this.props.schedule.orig)}/><br/>
+          <TextField floatingLabelText="LastName" 
+          value={this.props.schedule.lastName} 
+          onChange={(event) => this.handleField(event, 'lastName', this.props.index, this.props.schedule.orig)}/><br/>
           <CardActions>
-           <FlatButton label="Favorite" primary={true} onTouchTap={this.handleMakeFavorite} />
-           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteSchedule(this.props.index, this.props.notes.orig)}/>
+           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteSchedule(this.props.index, this.props.schedule.orig)}/>
            </CardActions>
           </CardText>
       </Card>
@@ -90,13 +99,13 @@ function mapDispatchToProps (dispatch) {
     doDelete: function (findex, oindex) {
       dispatch(deleteSchedule(findex, oindex))
     },
-    doNSort: function () {
+    doSSort: function () {
       dispatch(doSSort());
     },
-    doNSearch: function(term2) {
+    doSSearch: function(term2) {
       dispatch(doSSearch(term2));
     },
-    doNExpand: function(index, expanded) {
+    doSExpand: function(index, expanded) {
       dispatch(doSExpand(index, expanded));
     }
   }

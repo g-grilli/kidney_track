@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Card, CardTitle, CardActions} from 'material-ui/Card';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import './App.css'
 import {editNotes, deleteNotes, doNSearch, doNSort} from './actions.js';
 import NotesCard from './notes-card';
@@ -34,7 +33,7 @@ function mapStateToProps (state) {
   return {
     notes: state.notes,
     filtered_notes: state.filtered_notes,
-    term2: state.term2
+    term: state.term
   }
 }
 
@@ -49,8 +48,8 @@ function mapDispatchToProps (dispatch) {
     doNSort: function () {
       dispatch(doNSort());
     },
-    doNSearch: function(term2) {
-      dispatch(doNSearch(term2));
+    doNSearch: function(term) {
+      dispatch(doNSearch(term));
     }
   }
 }

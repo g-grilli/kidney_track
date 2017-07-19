@@ -53,20 +53,40 @@ function compare(a,b) {
 }
 
 function compareHealth(a,b) {
-  if (a.healthdate < b.healthDate) {
+  if (a.notes < b.notes) {
     return -1;
   }
-  if (a.healthDate > b.healthDate) {
+  if (a.notes > b.notes) {
+    return 1;
+  } 
+  return 0;
+}
+
+function compareMed(a,b) {
+  if (a.drugName < b.drugName) {
+    return -1;
+  }
+  if (a.drugName > b.drugName) {
     return 1;
   } 
   return 0;
 }
 
 function compareSchedule(a,b) {
-  if (a.scheduleDate < b.scheduleDate) {
+  if (a.lastName < b.lastName) {
     return -1;
   }
-  if (a.scheduleDate > b.scheduleDate) {
+  if (a.lastname > b.lastname) {
+    return 1;
+  } 
+  return 0;
+}
+
+function compareNote(a,b) {
+  if (a.note < b.note) {
+    return -1;
+  }
+  if (a.note > b.note) {
     return 1;
   } 
   return 0;
@@ -211,6 +231,7 @@ export function data (state, action) {
       console.log(new_state);
       return new_state;
       
+      
     case 'EDIT_MED':
       new_state = Object.assign({}, state);
       new_state.filtered_meds = [...state.filtered_meds];
@@ -235,14 +256,14 @@ export function data (state, action) {
       
       return new_state;
     
-        case 'DO_NSORT':
+    case 'DO_MSORT':
       new_state = Object.assign({}, state);
       
       new_state.filtered_meds = [...state.filtered_meds];
       new_state.meds = [...state.meds];
       
-      new_state.filtered_meds.sort(compare);
-      new_state.meds.sort(compare);
+      new_state.filtered_meds.sort(compareMed);
+      new_state.meds.sort(compareMed);
       return new_state;
       
     case 'DO_MSEARCH':
@@ -250,14 +271,14 @@ export function data (state, action) {
       var meds = [];
       new_state = Object.assign({}, state);
       
-      state.notes.forEach(function (c, index) {
+      state.meds.forEach(function (c, index) {
         if (c.drugName.toLowerCase().search(action.term.toLowerCase()) > -1) {
           filter_meds.push(
             Object.assign({}, c, {orig: index, expanded: false})
           );
         }
         
-        notes.push(Object.assign({}, c));
+        meds.push(Object.assign({}, c));
       });
       
       new_state.meds = meds;
@@ -316,7 +337,8 @@ export function data (state, action) {
       new_state.health.splice(action.oindex, 1);
       
       return new_state;
-        case 'DO_HSORT':
+    
+    case 'DO_HSORT':
       new_state = Object.assign({}, state);
       
       new_state.filtered_health = [...state.filtered_health];
@@ -332,7 +354,7 @@ export function data (state, action) {
       new_state = Object.assign({}, state);
       
       state.health.forEach(function (c, index) {
-        if (c.date.search(action.term) > -1) {
+        if (c.notes.toLowerCase().search(action.term.toLowerCase()) > -1) {
           filter_health.push(
             Object.assign({}, c, {orig: index, expanded: false})
           );
@@ -405,7 +427,7 @@ export function data (state, action) {
       new_state.schedule = [...state.schedule];
       
       new_state.filtered_schedule.sort(compareSchedule);
-      new_state.notes.sort(compareSchedule);
+      new_state.schedule.sort(compareSchedule);
       return new_state;
       
     case 'DO_SSEARCH':
@@ -413,7 +435,7 @@ export function data (state, action) {
       var schedule = [];
       new_state = Object.assign({}, state);
       
-      state.notes.forEach(function (c, index) {
+      state.schedule.forEach(function (c, index) {
         if (c.lastName.toLowerCase().search(action.term.toLowerCase()) > -1) {
           filter_schedule.push(
             Object.assign({}, c, {orig: index, expanded: false})
@@ -426,7 +448,7 @@ export function data (state, action) {
       new_state.schedule = schedule;
       new_state.filtered_schedule = filter_schedule;
       new_state.term = action.term;
-      debounceSort2();
+      debounceSort3();
       return new_state;
     
     case 'DO_SEXPAND':
@@ -485,8 +507,8 @@ export function data (state, action) {
       new_state.filtered_notes = [...state.filtered_notes];
       new_state.notes = [...state.notes];
       
-      new_state.filtered_notes.sort(compare);
-      new_state.notes.sort(compare);
+      new_state.filtered_notes.sort(compareNote);
+      new_state.notes.sort(compareNote);
       return new_state;
       
     case 'DO_NSEARCH':

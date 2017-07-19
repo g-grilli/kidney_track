@@ -9,15 +9,15 @@ class Meds extends Component {
   
 
     render() {
-      console.log(this.props.meds);
+      console.log('this.props.meds', this.props.filtered_meds, this.props.meds);
     return (
       <div>
        <Card className="md-card">
         <CardTitle title="Prescriptions" subtitle="Dosage & Schedule"/>
        
-       {this.props.filtered_meds.map((c, index) => {
+       {this.props.filtered_meds.map((m, index) => {
         return (
-          <MedCard med={c} expanded={c.expanded} index={index} key={c.drugName}/>
+          <MedCard meds={m} expanded={m.expanded} index={index} key={m.drugName}/>
             )
           })}
         </Card>
@@ -51,8 +51,8 @@ function mapDispatchToProps (dispatch) {
     doMSort: function () {
       dispatch(doMSort());
     },
-    doMSearch: function(term2) {
-      dispatch(doMSearch(term2));
+    doMSearch: function(term) {
+      dispatch(doMSearch(term));
     }
   }
 }

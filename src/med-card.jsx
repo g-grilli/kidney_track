@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
-
 import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 
-import {editMed, deleteMed, doExpand} from './actions.js';
+import {editMed, deleteMed, doMSort, doMSearch, doMExpand} from './actions.js';
 import {connect} from 'react-redux';
 
 class MedCard extends Component {
   handleExpandChange = (index, expanded) => {
-    this.props.doExpand(index, expanded);
-    
+    this.props.doMExpand(index, expanded);
+    console.log(this.props);
     if (!expanded) {
+      this.props.doMSort();
     }
   };
   
@@ -47,32 +47,43 @@ class MedCard extends Component {
   render () {
     
     
-    
     return (
       <div>
-      <Card className="md-card">
-        <CardHeader
-          title={this.props.meds.drugName}
-          subtitle={this.props.meds.dosage}
-          actAsExpander={true}
-          showExpandableButton={true}/>
+      <Card className="md-card" expanded={this.props.expanded} onExpandChange={(e) => this.handleExpandChange(this.props.index, e)}>
+       <CardHeader
+        title={this.props.meds.drugName}
+        subtitle={this.props.meds.dosage}
+        actAsExpander={true}
+        showExpandableButton={true}/>
         <CardText expandable={true}>
           <TextField floatingLabelText="Drug Name" 
           value={this.props.meds.drugName} 
           onChange={(event) => this.handleField(event, 'drugName', this.props.index, this.props.meds.orig)}/><br/>
           Address:<br/>
-          <TextField floatingLabelText="Dosage" value={this.props.meds.dosage} onChange={(event) => this.handleField(event, 'dosage', this.props.index, this.props.meds.orig)}/><br/>
-          <Checkbox label="Morning" value={this.props.meds.morning} onChange={(event) => this.handleField(event, 'morning', this.props.index, this.props.meds.orig)}/><br/>
-          <Checkbox label="Noon" value={this.props.meds.noon} onChange={(event) => this.handleField(event, 'noon', this.props.index, this.props.meds.orig)}/><br/>
-          <Checkbox label="Evening" value={this.props.meds.evening} onChange={(event) => this.handleField(event, 'evening', this.props.index, this.props.meds.orig)} />
+          <TextField floatingLabelText="Dosage" 
+          value={this.props.meds.dosage} 
+          onChange={(event) => this.handleField(event, 'dosage', this.props.index, this.props.meds.orig)}/><br/>
+          <Checkbox label="Morning" 
+          value={this.props.meds.morning} 
+          onChange={(event) => this.handleField(event, 'morning', this.props.index, this.props.meds.orig)}/><br/>
+          <Checkbox label="Noon" 
+          value={this.props.meds.noon} 
+          onChange={(event) => this.handleField(event, 'noon', this.props.index, this.props.meds.orig)}/><br/>
+          <Checkbox label="Evening" 
+          value={this.props.meds.evening} 
+          onChange={(event) => this.handleField(event, 'evening', this.props.index, this.props.meds.orig)} />
           <br/>
-          <Checkbox label="Bed Time" value={this.props.meds.bedTime} onChange={(event) => this.handleField(event, 'bedTime', this.props.index, this.props.meds.orig)}/> 
-          <TextField label="Notes" value={this.props.meds.notes} onChange={(event) => this.handleField(event, 'notes', this.props.index, this.props.meds.orig)}/> 
-          <CardActions>
-           <FlatButton label="Favorite" primary={true} onTouchTap={this.handleMakeFavorite} />
-           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteMed(this.props.index, this.props.meds.orig)}/>
-           </CardActions>
-          </CardText>
+          <Checkbox label="Bed Time" 
+          value={this.props.meds.bedTime} 
+          onChange={(event) => this.handleField(event, 'bedTime', this.props.index, this.props.meds.orig)}/> 
+          <TextField label="Notes" 
+          value={this.props.meds.notes} 
+          onChange={(event) => this.handleField(event, 'notes', this.props.index, this.props.meds.orig)}/> 
+        <CardActions>
+          <FlatButton label="Favorite" primary={true} onTouchTap={this.handleMakeFavorite} />
+          <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteMed(this.props.index, this.props.meds.orig)}/>
+          </CardActions>
+       </CardText>
       </Card>
       </div>
     )
@@ -93,8 +104,14 @@ function mapDispatchToProps (dispatch) {
     doDelete: function (findex, oindex) {
       dispatch(deleteMed(findex, oindex))
     },
-    doExpand: function(index, expanded) {
-      dispatch(doExpand(index, expanded));
+    doMSort: function () {
+      dispatch(doMSort());
+    },
+    doMSearch: function(term) {
+      dispatch(doMSearch(term));
+    },
+    doMExpand: function(index, expanded) {
+      dispatch(doMExpand(index, expanded));
     }
   }
 }

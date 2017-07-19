@@ -15,9 +15,9 @@ class ScheduleStatus extends Component {
        <Card className="md-card">
         <CardTitle title="Upcoming Appointments" subtitle="Doctors & Labs"/>
        
-       {this.props.filtered_schedule.map((c, index) => {
+       {this.props.filtered_schedule.map((s, index) => {
         return (
-            <ScheduleCard schedule={c} expanded={c.expanded} index={index} key={c.lastName}/>
+            <ScheduleCard schedule={s} expanded={s.expanded} index={index} key={s.lastName}/>
             )
           })}
         </Card>
@@ -47,10 +47,10 @@ function mapDispatchToProps (dispatch) {
     doDelete: function (index) {
       dispatch(deleteSchedule(index))
     },
-    doNSort: function () {
+    doSSort: function () {
       dispatch(doSSort());
     },
-    doNSearch: function(term2) {
+    doSSearch: function(term2) {
       dispatch(doSSearch(term2));
     }
   }

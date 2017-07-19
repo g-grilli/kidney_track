@@ -108,7 +108,7 @@ handleChangeDate = (event, noteDate) => {
        <Card classfirstName="md-card">
         <CardTitle title="Add Note"/>
           <CardText>
-           <DatePicker floatingLabelText="Date"
+           <DatePicker floatingLabelText="Date" mode="landscape"
             value={this.state.noteDate}
             onChange={this.handleChangeDate}
            />
