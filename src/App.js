@@ -16,7 +16,6 @@ import Contacts from './contacts';
 import ContactCard from './contact-card';
 import Add from './add';
 import Schedule from './schedule';
-import Home from './home';
 import Main from './main';
 import './App.css'
 
@@ -32,26 +31,6 @@ const NoMatch = ({ location }) => (
     <h3>Page not found: {location.pathname}</h3>
   </div>
 )
-
-const AppMenu = (props) => (
-  <IconMenu
-   iconButtonElement={
-      <IconButton><MoreVertIcon color='black'/></IconButton>
-    }
-    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-  >
-    <MenuItem>
-      <Link to="/" className="icon-menu">Home</Link>
-    </MenuItem>
-    <MenuItem>
-      <Link to="/contacts" className="icon-menu">Contacts</Link>
-    </MenuItem>
-    <MenuItem>
-      <Link to="/add" className="icon-menu">Add Contact</Link>
-    </MenuItem>
-  </IconMenu>
-);
 
 class App extends Component {
 
