@@ -23,7 +23,7 @@ class MedCard extends Component {
   
   handleEditMed = (index) => {
     console.log('submitted', this.state);
-    this.props.onSubmit(index, this.props.med);
+    this.props.onSubmit(index, this.props.meds);
     this.setState({open: true});
   }
 
@@ -37,7 +37,7 @@ class MedCard extends Component {
     console.log(event.target.value);
     var new_med = Object.assign(
       {},
-      this.props.med,
+      this.props.meds,
       {[field]: event.target.value}
     );
     
@@ -52,25 +52,25 @@ class MedCard extends Component {
       <div>
       <Card className="md-card">
         <CardHeader
-          title={this.props.med.drugName}
-          subtitle={this.props.med.dosage}
+          title={this.props.meds.drugName}
+          subtitle={this.props.meds.dosage}
           actAsExpander={true}
           showExpandableButton={true}/>
         <CardText expandable={true}>
           <TextField floatingLabelText="Drug Name" 
-          value={this.props.med.drugName} 
-          onChange={(event) => this.handleField(event, 'drugName', this.props.index, this.props.med.orig)}/><br/>
+          value={this.props.meds.drugName} 
+          onChange={(event) => this.handleField(event, 'drugName', this.props.index, this.props.meds.orig)}/><br/>
           Address:<br/>
-          <TextField floatingLabelText="Dosage" value={this.props.med.dosage} onChange={(event) => this.handleField(event, 'dosage', this.props.index, this.props.med.orig)}/><br/>
-          <Checkbox label="Morning" value={this.props.med.morning} onChange={(event) => this.handleField(event, 'morning', this.props.index, this.props.med.orig)}/><br/>
-          <Checkbox label="Noon" value={this.props.med.noon} onChange={(event) => this.handleField(event, 'noon', this.props.index, this.props.med.orig)}/><br/>
-          <Checkbox label="Evening" value={this.props.med.evening} onChange={(event) => this.handleField(event, 'evening', this.props.index, this.props.med.orig)} />
+          <TextField floatingLabelText="Dosage" value={this.props.meds.dosage} onChange={(event) => this.handleField(event, 'dosage', this.props.index, this.props.meds.orig)}/><br/>
+          <Checkbox label="Morning" value={this.props.meds.morning} onChange={(event) => this.handleField(event, 'morning', this.props.index, this.props.meds.orig)}/><br/>
+          <Checkbox label="Noon" value={this.props.meds.noon} onChange={(event) => this.handleField(event, 'noon', this.props.index, this.props.meds.orig)}/><br/>
+          <Checkbox label="Evening" value={this.props.meds.evening} onChange={(event) => this.handleField(event, 'evening', this.props.index, this.props.meds.orig)} />
           <br/>
-          <Checkbox label="Bed Time" value={this.props.med.bedTime} onChange={(event) => this.handleField(event, 'bedTime', this.props.index, this.props.med.orig)}/> 
-          <TextField label="Notes" value={this.props.med.notes} onChange={(event) => this.handleField(event, 'notes', this.props.index, this.props.med.orig)}/> 
+          <Checkbox label="Bed Time" value={this.props.meds.bedTime} onChange={(event) => this.handleField(event, 'bedTime', this.props.index, this.props.meds.orig)}/> 
+          <TextField label="Notes" value={this.props.meds.notes} onChange={(event) => this.handleField(event, 'notes', this.props.index, this.props.meds.orig)}/> 
           <CardActions>
            <FlatButton label="Favorite" primary={true} onTouchTap={this.handleMakeFavorite} />
-           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteMed(this.props.index, this.props.med.orig)}/>
+           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteMed(this.props.index, this.props.meds.orig)}/>
            </CardActions>
           </CardText>
       </Card>

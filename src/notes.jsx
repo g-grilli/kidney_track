@@ -35,7 +35,7 @@ class Notes extends Component {
     super(props);
     
     this.state = {
-      date: '',
+      noteDate: '',
       note: '',
       notes: []
     };
@@ -79,7 +79,7 @@ handleSubmit(event) {
 
 handleAddNote = () => {
   this.props.onSubmit({
-    date: this.state.date,
+    noteDate: this.state.noteDate,
     note: this.state.note,
     isOpened: false
   });
@@ -91,9 +91,9 @@ handleExpandChange = (expanded) => {
   this.setState({expanded: expanded});
 };
 
-handleExpandChange = (expanded) => {
-  this.setState({expanded: expanded});
-};
+handleChangeDate = (event, noteDate) => {
+    this.setState({noteDate: noteDate});
+  };
     render() {
       const actions = [
       <FlatButton
@@ -109,8 +109,9 @@ handleExpandChange = (expanded) => {
         <CardTitle title="Add Note"/>
           <CardText>
            <DatePicker floatingLabelText="Date"
-            value={this.state.date}
-            onChange={event => this.update_state(event, 'date')}/>
+            value={this.state.noteDate}
+            onChange={this.handleChangeDate}
+           />
            <br/>
            <TextField floatingLabelText="Note"
             value={this.state.note}

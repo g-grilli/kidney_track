@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Card, CardTitle, CardActions} from 'material-ui/Card';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import './App.css'
-import {editNotes, deleteNotes} from './actions.js';
+import {editNotes, deleteNotes, doNSearch, doNSort} from './actions.js';
 import NotesCard from './notes-card';
 import {connect} from 'react-redux';
 
@@ -14,21 +14,9 @@ class NotesStatus extends Component {
        <Card className="md-card">
         <CardTitle title="Notes" subtitle="Miscelanous Questions & Info"/>
        
-       {this.props.notes.map((c, index) => {
-        return (
-          <Table allRowsSelected={false}>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-           <TableRow striped={true}>
-            <TableHeaderColumn>Doctor</TableHeaderColumn>
-              <TableHeaderColumn>Specialty</TableHeaderColumn>
-               <TableHeaderColumn>Date</TableHeaderColumn>
-               <TableHeaderColumn>Time</TableHeaderColumn>
-            </TableRow>
-            </TableHeader>
-            <TableBody displayRowCheckbox={false}>
-            <NotesCard notes={c} expanded={c.expanded} index={index} key={c.date}/>
-            </TableBody>
-            </Table>
+         {this.props.filtered_notes.map((c, index) => {
+          return (
+          <NotesCard notes={c} expanded={c.expanded} index={index} key={c.note}/>
             )
           })}
         </Card>
@@ -44,7 +32,9 @@ class NotesStatus extends Component {
 
 function mapStateToProps (state) {
   return {
-    notes: state.notes
+    notes: state.notes,
+    filtered_notes: state.filtered_notes,
+    term2: state.term2
   }
 }
 
@@ -55,6 +45,12 @@ function mapDispatchToProps (dispatch) {
     },
     doDelete: function (index) {
       dispatch(deleteNotes(index))
+    },
+    doNSort: function () {
+      dispatch(doNSort());
+    },
+    doNSearch: function(term2) {
+      dispatch(doNSearch(term2));
     }
   }
 }

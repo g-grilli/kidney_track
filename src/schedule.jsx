@@ -20,15 +20,19 @@ const customContentStyle = {
 };
 
 class Schedule extends Component {
+   state = {
+    value: 1,
+  };
+   
+   
    constructor(props) {
     super(props);
     this.state = {
-      value2: 1,
-      time: '', 
-      date: '',
+      scheduleTime: '', 
+      scheduleDate: '',
       firstName: '',
       lastName: '',
-      type: '',
+      scheduleType: '',
       schedule: []
     };
     this.state.display_schedule = this.state.schedule;
@@ -64,32 +68,36 @@ class Schedule extends Component {
   this.setState({new_state});
   }
 
-  handleChangeTime = (event, date) => {
-    this.setState({time: date});
+  handleChangeTime = (event, scheduleTime) => {
+    this.setState({scheduleTime: scheduleTime});
   };
   
-  handleChangeDate = (event, date) => {
-    this.setState({date: date});
+  handleChangeDate = (event, scheduleDate) => {
+    this.setState({scheduleDate: scheduleDate});
   };
   
   handleSubmit(event) {
-  console.log('submitted: ' + this.state.type +' '+ this.state.time +' '+ this.state.date +' '+ this.state.firstName +' '+ this.state.lastName);
+  console.log('submitted: ' + this.state.scheduleType +' '+ this.state.scheduleTime +' '+ this.state.scheduleDate +' '+ this.state.firstName +' '+ this.state.lastName);
   event.preventDefault();
   }
   
   handleAddSchedule = () => {
   this.props.onSubmit({
-    time: this.state.time,
-    date: this.state.date,
+    scheduleTime: this.state.scheduleTime,
+    scheduleDate: this.state.scheduleDate,
     practice: this.state.firstName,
     specialty: this.state.lastName,
-    type: this.state.type, 
+    scheduleType: this.state.scheduleType, 
     isOpened: false
   });
   
     this.setState({open: true});
 }
-
+  
+  handleChange = (event, index, value) => {
+  this.setState({value});
+  };
+  
   handleExpandChange = (expanded) => {
   this.setState({expanded: expanded});
   };
@@ -112,26 +120,25 @@ class Schedule extends Component {
        <Card className="md-card">
         <CardTitle title="Add Appointment"/>
           <SelectField floatingLabelText="Appointment Type"
-            value={this.state.type}
-            value2={this.state.type}
-            onChange={event => this.update_state(event, 'type')}
+            value={this.state.value}
+            onChange={this.handleChange}
           >
-            <MenuItem value2={1} primaryText="Clinic" />
-            <MenuItem value2={2} primaryText="Initial" />
-            <MenuItem value2={3} primaryText="Follow-up" />
-            <MenuItem value2={4} primaryText="Check-up" />
-            <MenuItem value2={5} primaryText="Labs" />
+            <MenuItem value={1} primaryText="Clinic" />
+            <MenuItem value={2} primaryText="Initial" />
+            <MenuItem value={3} primaryText="Follow-up" />
+            <MenuItem value={4} primaryText="Check-up" />
+            <MenuItem value={5} primaryText="Labs" />
           </SelectField>
         <br/>
         <TimePicker
           format="ampm" hintText="Appointment Time" container='inline'
-          value={this.state.time}
+          value={this.state.scheduleTime}
           onChange={this.handleChangeTime}
         /><br/>
         <DatePicker
         hintText="Appointment Date" container="inline"
-        value={this.state.date}
-        onChange={event => this.handleChangeDate(event, 'date')}
+        value={this.state.scheduleDate}
+        onChange={this.handleChangeDate}
       />
       <TextField floatingLabelText="First Name"
            value={this.state.firstName}

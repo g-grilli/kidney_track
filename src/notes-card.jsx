@@ -2,10 +2,18 @@ import React, {Component} from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import {editNotes, deleteNotes, doExpand} from './actions.js';
+import {editNotes, deleteNotes, doNExpand, doNSearch, doNSort} from './actions.js';
 import {connect} from 'react-redux';
 
 class NotesCard extends Component {
+  
+  handleExpandChange = (index, expanded) => {
+    this.props.doNExpand(index, expanded);
+    console.log(this.props);
+    if (!expanded) {
+      this.props.doNSort();
+    }
+  };
   
   handleSubmit(event) {
     console.log('submitted: ' + this.state.date +' '+ this.state.note);
@@ -41,10 +49,10 @@ class NotesCard extends Component {
     
     return (
       <div>
-      <Card className="md-card">
+      <Card className="md-card" expanded={this.props.expanded} onExpandChange={(e) => this.handleExpandChange(this.props.index, e)}>
         <CardHeader
-          title={this.props.notes.date}
-          subtitle={this.props.notes.note}
+          title={this.props.notes.note}
+          subtitle={this.props.notes.date}
           actAsExpander={true}
           showExpandableButton={true}/>
         <CardText expandable={true}>
@@ -53,7 +61,7 @@ class NotesCard extends Component {
           <TextField floatingLabelText="Note" value={this.props.notes.note} onChange={(event) => this.handleField(event, 'note', this.props.index, this.props.notes.orig)}/><br/>
           <CardActions>
            <FlatButton label="Favorite" primary={true} onTouchTap={this.handleMakeFavorite} />
-           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteContact(this.props.index, this.props.contact.orig)}/>
+           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteNotes(this.props.index, this.props.notes.orig)}/>
            </CardActions>
           </CardText>
       </Card>
@@ -75,6 +83,15 @@ function mapDispatchToProps (dispatch) {
     },
     doDelete: function (findex, oindex) {
       dispatch(deleteNotes(findex, oindex))
+    },
+    doNSort: function () {
+      dispatch(doNSort());
+    },
+    doNSearch: function(term2) {
+      dispatch(doNSearch(term2));
+    },
+    doNExpand: function(index, expanded) {
+      dispatch(doNExpand(index, expanded));
     }
   }
 }

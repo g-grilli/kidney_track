@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 
-import { initContacts } from './actions';
+import { initData } from './actions';
 import store from './store';
 
 var config = {
@@ -49,7 +49,7 @@ function read_data () {
       data = data.val();
       console.log(data);
       if (data) {
-        store.dispatch(initContacts(data));
+        store.dispatch(initData(data));
       }
     });
 }

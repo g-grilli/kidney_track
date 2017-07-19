@@ -2,13 +2,21 @@ import React, {Component} from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import {editSchedule, deleteSchedule, doExpand} from './actions.js';
+import {editSchedule, deleteSchedule, doSExpand, doSSearch, doSSort} from './actions.js';
 import {connect} from 'react-redux';
 
 class ScheduleCard extends Component {
   
+  handleExpandChange = (index, expanded) => {
+    this.props.doSExpand(index, expanded);
+    console.log(this.props);
+    if (!expanded) {
+      this.props.doSSort();
+    }
+  };
+  
   handleSubmit(event) {
-    console.log('submitted: ' + this.state.date +' '+ this.state.weight);
+    console.log('submitted: ' + this.state.scheduleTime +' '+ this.state.scheduleDate +' '+ this.state.visitType +' '+ this.state.lastName);
     event.preventDefault();
   }
   
@@ -26,13 +34,13 @@ class ScheduleCard extends Component {
 
   handleField (event, field, findex, oindex) {
     console.log(event.target.value);
-    var new_schedule = Object.assign(
+    var new_notes = Object.assign(
       {},
-      this.props.schedule,
+      this.props.notes,
       {[field]: event.target.value}
     );
     
-    this.props.onSubmit(findex, new_schedule);
+    this.props.onSubmit(findex, new_notes);
   }
   
   render () {
@@ -41,27 +49,25 @@ class ScheduleCard extends Component {
     
     return (
       <div>
-      <Card className="md-card">
+      <Card className="md-card" expanded={this.props.expanded} onExpandChange={(e) => this.handleExpandChange(this.props.index, e)}>
         <CardHeader
-          title={this.props.schedule.lastName}
-          subtitle={this.props.schedule.date}
+          title={this.props.schedule.scheduleDate}
+          subtitle={this.props.schedule.lastName}
           actAsExpander={true}
           showExpandableButton={true}/>
         <CardText expandable={true}>
-          <TextField floatingLabelText="First Name" value={this.props.schedule.firstName} onChange={(event) => this.handleField(event, 'firstName', this.props.index, this.props.schedule.orig)}/><br/>
+          <TextField floatingLabelText="Time" value={this.props.schedule.scheduleTime} onChange={(event) => this.handleField(event, 'scheduleTime', this.props.index, this.props.schedule.orig)}/><br/>
           <br/>
-          <TextField floatingLabelText="Last Name" value={this.props.schedule.lastNameame} onChange={(event) => this.handleField(event, 'lastName', this.props.index, this.props.schedule.orig)}/><br/>
+          <TextField floatingLabelText="Date" value={this.props.schedule.scheduleTime} onChange={(event) => this.handleField(event, 'scheduleDate', this.props.index, this.props.schedule.orig)}/><br/>
           <br/>
-          <TextField floatingLabelText="Specialty" value={this.props.schedule.specialty} onChange={(event) => this.handleField(event, 'specialty', this.props.index, this.props.schedule.orig)}/><br/>
+          <TextField floatingLabelText="Visit Type" value={this.props.schedule.visitType} onChange={(event) => this.handleField(event, 'visitType', this.props.index, this.props.schedule.orig)}/><br/>
           <br/>
-          <TextField floatingLabelText="Date" value={this.props.schedule.date} onChange={(event) => this.handleField(event, 'date', this.props.index, this.props.schedule.orig)}/><br/>
+          <TextField floatingLabelText="LastName" value={this.props.schedule.firstName} onChange={(event) => this.handleField(event, 'firstName', this.props.index, this.props.schedule.orig)}/><br/>
           <br/>
-          <TextField floatingLabelText="Time" value={this.props.schedule.time} onChange={(event) => this.handleField(event, 'time', this.props.index, this.props.schedule.orig)}/><br/>
-          <br/>
-          <TextField floatingLabelText="Notes" value={this.props.schedule.notes} onChange={(event) => this.handleField(event, 'notes', this.props.index, this.props.schedule.orig)} />
+          <TextField floatingLabelText="LastName" value={this.props.schedule.lastName} onChange={(event) => this.handleField(event, 'lastName', this.props.index, this.props.schedule.orig)}/><br/>
           <CardActions>
            <FlatButton label="Favorite" primary={true} onTouchTap={this.handleMakeFavorite} />
-           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteContact(this.props.index, this.props.contact.orig)}/>
+           <FlatButton type="submit" label='DELETE' primary={true} onClick={() => this.handleDeleteSchedule(this.props.index, this.props.notes.orig)}/>
            </CardActions>
           </CardText>
       </Card>
@@ -83,6 +89,15 @@ function mapDispatchToProps (dispatch) {
     },
     doDelete: function (findex, oindex) {
       dispatch(deleteSchedule(findex, oindex))
+    },
+    doNSort: function () {
+      dispatch(doSSort());
+    },
+    doNSearch: function(term2) {
+      dispatch(doSSearch(term2));
+    },
+    doNExpand: function(index, expanded) {
+      dispatch(doSExpand(index, expanded));
     }
   }
 }

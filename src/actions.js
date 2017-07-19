@@ -21,9 +21,9 @@ export function deleteContact (findex, oindex) {
   }
 }
 
-export function initContacts (data) {
+export function initData (data) {
   return {
-    type: 'INIT_CONTACTS',
+    type: 'INIT_DATA',
     data: data
   }
 }
@@ -166,7 +166,76 @@ export function initNotes (data) {
     data: data
   }
 }
-
-
-
+export function doNSearch (term) {
+  return {
+    type: 'DO_NSEARCH',
+    term: term
+  }
+}
+export function doNSort () {
+  return {
+    type: 'DO_NSORT'
+  }
+}
+export function doNExpand (index, expanded) {
+  return {
+    type: 'DO_NEXPAND',
+    expanded: expanded,
+    index: index
+  }
+}
+export function doSSearch (term) {
+  return {
+    type: 'DO_NSEARCH',
+    term: term
+  }
+}
+export function doSSort () {
+  return {
+    type: 'DO_NSORT'
+  }
+}
+export function doSExpand (index, expanded) {
+  return {
+    type: 'DO_NEXPAND',
+    expanded: expanded,
+    index: index
+  }
+}
+export function doMSearch (term) {
+  return {
+    type: 'DO_NSEARCH',
+    term: term
+  }
+}
+export function doMSort () {
+  return {
+    type: 'DO_NSORT'
+  }
+}
+export function doMExpand (index, expanded) {
+  return {
+    type: 'DO_NEXPAND',
+    expanded: expanded,
+    index: index
+  }
+}
+export function doHSearch (term) {
+  return {
+    type: 'DO_HSEARCH',
+    term: term
+  }
+}
+export function doHSort () {
+  return {
+    type: 'DO_HSORT'
+  }
+}
+export function doHExpand (index, expanded) {
+  return {
+    type: 'DO_HEXPAND',
+    expanded: expanded,
+    index: index
+  }
+}
 
