@@ -17,7 +17,9 @@ class Meds extends Component {
        
        {this.props.filtered_meds.map((m, index) => {
         return (
+          <div>
           <MedCard meds={m} expanded={m.expanded} index={index} key={m.drugName}/>
+          </div>
             )
           })}
         </Card>

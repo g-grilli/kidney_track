@@ -22,9 +22,6 @@ import './App.css'
 import { Provider } from 'react-redux';
 import store from './store.js';
 
-const theme = getMuiTheme({
-  palette: {primary1Color: lightblue900}
-});
 
 const NoMatch = ({ location }) => (
   <div>
@@ -37,7 +34,7 @@ class App extends Component {
  render() {
   return (
     <Provider store={store}>
-     <MuiThemeProvider muiTheme={theme}>
+     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
