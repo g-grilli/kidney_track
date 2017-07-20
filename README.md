@@ -11,8 +11,12 @@ quickly changes as medications are added, dosages changed or just stopped altoge
 clinic appointments and tests are added,  for for the pack rat at heart this creates 
 a daunting challenge and administrative PIB.</p>
 <h3>Solution</h3> 
-<p><strong>Kidney Track</strong> is a progressive web app to help ease the admin 
+<p><strong>Kidney Track</strong> is a single page progressive web app that help's ease the administrative 
 burden for the transplant family.<p>
+<p><strong>Kidney Track</strong> takes advantage of the Firebase API to store user data which makes the information 
+available on any web connected device the user selects.<p>
+
+
 <h3>Tools</h3>
 <ul>
 <li>React</li>
@@ -20,6 +24,9 @@ burden for the transplant family.<p>
 <li>JavaScript</li>
 <li>HTML</li>
 <li>CSS</li>
+<li>Firebase</li>
+<li>Material-ui</li>
+<li>Moment</ui>
 </ul>
 
 
