@@ -76,7 +76,7 @@ function compareSchedule(a,b) {
   if (a.lastName < b.lastName) {
     return -1;
   }
-  if (a.lastname > b.lastname) {
+  if (a.lastName > b.lastName) {
     return 1;
   } 
   return 0;
@@ -412,11 +412,10 @@ export function data (state, action) {
       new_state.filtered_schedule = [...state.filtered_schedule];
       new_state.schedule = [...state.schedule];
       
-      data = Object.assign({}, action.data);
-      delete data.orig;
-      console.log(action.data);
-      new_state.schedule[action.data.orig] = data;
-      new_state.filtered_schedule[action.index] = action.data;
+      
+      console.log(action.findex, action.oindex);
+      new_state.filtered_schedule.splice(action.findex, 1);
+      new_state.schedule.splice(action.oindex, 1);
       
       return new_state;
       

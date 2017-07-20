@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
-import Schedule from './schedule'
-import ScheduleStatus from './schedule-status'
-import Contacts from './contacts'
-import Add from './add'
-import Medication from './medication'
-import Meds from './meds'
+import Schedule from './schedule';
+import ScheduleStatus from './schedule-status';
+import Contacts from './contacts';
+import Add from './add';
+import Medication from './medication';
+import Meds from './meds';
 import Health from './health'
 import HealthStatus from './health-status'
 import Notes from './notes'
@@ -13,6 +13,7 @@ import Home from './home'
 import NotesStatus from './notes-status'
 import { addContact } from './actions.js';
 import { connect } from 'react-redux';
+
 import './main.css'
 
 class Main extends Component {
@@ -30,7 +31,7 @@ class Main extends Component {
         <div>
          <Card className="md-card">
           <CardHeader
-           title='Prescriptions'
+           title='Prescription Changes'
            subtitle='Dosage & Schedule'
            actAsExpander={true}
            showExpandableButton={true}/>

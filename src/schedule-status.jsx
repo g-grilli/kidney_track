@@ -50,8 +50,8 @@ function mapDispatchToProps (dispatch) {
     doSSort: function () {
       dispatch(doSSort());
     },
-    doSSearch: function(term2) {
-      dispatch(doSSearch(term2));
+    doSSearch: function(term) {
+      dispatch(doSSearch(term));
     }
   }
 }

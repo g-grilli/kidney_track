@@ -29,12 +29,16 @@ const NoMatch = ({ location }) => (
   </div>
 )
 
+const theme = getMuiTheme({
+  palette: {primary1Color: lightblue900}
+ });
+
 class App extends Component {
 
  render() {
   return (
     <Provider store={store}>
-     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+     <MuiThemeProvider muiTheme={theme}>
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
