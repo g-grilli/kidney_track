@@ -8,7 +8,7 @@ your daily weight weight and blood pressure reading.  A section on what to do if
 A section on diet. Even a handy dandy section for a business card collection.  
 </p><p>This book needs to be hauled around to various checkups and tests, but the information 
 quickly changes as medications are added, dosages changed or just stopped altogether, 
-clinic appointments and tests are added,  for for the pack rat at heart this creates 
+clinic appointments and tests are added,  for the pack rat at heart this creates 
 a daunting challenge and administrative PIB.</p>
 <h3>Solution</h3> 
 <p><strong>Kidney Track</strong> is a single page progressive web app that help's ease the administrative 
